@@ -1,5 +1,5 @@
 {
-	"name": "challenge-04",
+	"name": "react-tailwind-boilerplate",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -51,5 +51,22 @@
 		"react-app-rewire-alias": "^1.1.7",
 		"react-app-rewired": "^2.2.1",
 		"tailwindcss": "^3.1.8"
-	}
+	},
+	"description": "- Tailwind CSS - Tailwind Styles Component - Prettier - Absolute import - Zustand - Axios - React Hook Form",
+	"main": "config-overrides.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/arayhan/react-tailwind-boilerplate.git"
+	},
+	"author": "@arayhan",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/arayhan/react-tailwind-boilerplate/issues"
+	},
+	"homepage": "https://github.com/arayhan/react-tailwind-boilerplate#readme",
+	"keywords": [
+		"react",
+		"tailwindcss",
+		"boilerplate"
+	]
 }
