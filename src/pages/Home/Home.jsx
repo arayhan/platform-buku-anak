@@ -2,7 +2,7 @@ import React from 'react';
 import { logo } from '@/images';
 import styles from './Home.module.scss';
 
-const Home = () => {
+export const Home = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
@@ -31,5 +31,3 @@ const Home = () => {
 		</div>
 	);
 };
-
-export default Home;
