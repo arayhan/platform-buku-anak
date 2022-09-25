@@ -64,7 +64,6 @@
 	"bugs": {
 		"url": "https://github.com/arayhan/react-tailwind-boilerplate/issues"
 	},
-	"homepage": "https://github.com/arayhan/react-tailwind-boilerplate#readme",
 	"keywords": [
 		"react",
 		"tailwindcss",
