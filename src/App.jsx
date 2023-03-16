@@ -2,11 +2,14 @@ import React from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { Background } from './components/atoms';
 import { ButtonBacksound } from './components/molecules';
+import { BOOK_DATA } from './data/bookData';
 import { MainMenu } from './pages';
 
 function App() {
+	const [isStartReading, setIsStartReading] = React.useState(false);
+
 	const onStartReading = () => {
-		console.log('START');
+		setIsStartReading(true);
 	};
 
 	return (
@@ -14,14 +17,18 @@ function App() {
 			<Background />
 
 			<div className="container relative flex flex-col items-center justify-center h-full max-w-screen-xl gap-12 mx-auto top-5">
-				<HTMLFlipBook width={1024} height={650}>
-					<div>
-						<MainMenu onClickStart={onStartReading} />
+				{!isStartReading && <MainMenu onClickStart={onStartReading} />}
+				{isStartReading && (
+					<div className="overflow-hidden rounded-lg shadow-xl">
+						<HTMLFlipBook width={1036.5} height={518.25}>
+							{BOOK_DATA.pages.map((page) => (
+								<div key={page.number}>
+									<img src={page.image} alt="" />
+								</div>
+							))}
+						</HTMLFlipBook>
 					</div>
-					<div>Page 2</div>
-					<div>Page 3</div>
-					<div>Page 4</div>
-				</HTMLFlipBook>
+				)}
 			</div>
 
 			<div className="absolute bottom-5 right-8">
