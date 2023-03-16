@@ -1,1 +1,1 @@
-export * from './ButtonImage';
+export * from './ButtonIcon';

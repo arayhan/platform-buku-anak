@@ -1,4 +1,4 @@
-import { ButtonImage } from '@/components/atoms';
+import { ButtonIcon } from '@/components/atoms';
 import React from 'react';
 
 export const MainMenu = () => {
@@ -20,17 +20,15 @@ export const MainMenu = () => {
 						<img className="w-96" src={require('@/images/logo.png')} alt="" />
 
 						<div className="flex items-center justify-center w-full gap-3">
-							<ButtonImage image={require('@/images/symbol/start.png')} />
+							<ButtonIcon icon={require('@/images/symbol/start.png')} />
 						</div>
 					</div>
 				</div>
-
-				<div></div>
 			</div>
 
 			<div className="absolute bottom-5 right-8">
 				<div className="flex items-center justify-center">
-					<ButtonImage image={require('@/images/symbol/music.png')} className={'w-12'} />
+					<ButtonIcon icon={require('@/images/symbol/music.png')} className={'w-12'} />
 				</div>
 			</div>
 		</div>
