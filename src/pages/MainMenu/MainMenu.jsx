@@ -1,3 +1,4 @@
+import { ButtonImage } from '@/components/atoms';
 import React from 'react';
 
 export const MainMenu = () => {
@@ -9,9 +10,27 @@ export const MainMenu = () => {
 				alt=""
 			/>
 
-			<div className="container flex items-center justify-center h-full max-w-screen-xl mx-auto">
-				<div className="h-[90vh] bg-white rounded-lg overflow-hidden">
-					<img className="h-full mx-auto" src={require('@/images/cover.jpg')} alt="" />
+			<div className="container relative flex flex-col items-center justify-center h-full max-w-screen-xl gap-12 mx-auto top-5">
+				<div className="flex items-center justify-center w-full gap-10 rounded-lg">
+					<div className="relative w-full">
+						<img className="z-0 mx-auto rounded-lg shadow-xl" src={require('@/images/cover.jpg')} alt="" />
+					</div>
+
+					<div className="flex flex-col items-center justify-center w-full gap-10">
+						<img className="w-96" src={require('@/images/logo.png')} alt="" />
+
+						<div className="flex items-center justify-center w-full gap-3">
+							<ButtonImage image={require('@/images/symbol/start.png')} />
+						</div>
+					</div>
+				</div>
+
+				<div></div>
+			</div>
+
+			<div className="absolute bottom-5 right-8">
+				<div className="flex items-center justify-center">
+					<ButtonImage image={require('@/images/symbol/music.png')} className={'w-12'} />
 				</div>
 			</div>
 		</div>
