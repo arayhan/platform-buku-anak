@@ -1,7 +1,9 @@
 import { ButtonIcon } from '@/components/atoms';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const MainMenu = ({ onClickStart }) => {
+export const MainMenu = () => {
+	const navigate = useNavigate();
 	return (
 		<div className="flex items-center justify-center w-full gap-10 rounded-lg">
 			<div className="relative w-full">
@@ -12,7 +14,7 @@ export const MainMenu = ({ onClickStart }) => {
 				<img className="w-96" src={require('@/images/logo.png')} alt="" />
 
 				<div className="flex items-center justify-center w-full gap-3">
-					<ButtonIcon icon={require('@/images/symbol/start.png')} onClick={onClickStart} />
+					<ButtonIcon icon={require('@/images/symbol/start.png')} onClick={() => navigate('/read')} />
 				</div>
 			</div>
 		</div>

@@ -1,37 +1,29 @@
 import React from 'react';
-import HTMLFlipBook from 'react-pageflip';
 import { Background } from './components/atoms';
 import { ButtonBacksound } from './components/molecules';
-import { BOOK_DATA } from './data/bookData';
 import { MainMenu } from './pages';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { ButtonGoHome } from './components/molecules/ButtonGoHome';
+import Read from './pages/Read/Read';
 
 function App() {
-	const [isStartReading, setIsStartReading] = React.useState(false);
+	const location = useLocation();
 
-	const onStartReading = () => {
-		setIsStartReading(true);
-	};
+	const IS_AT_HOME = location.pathname === '/';
 
 	return (
 		<div className="h-screen max-h-screen overflow-hidden">
 			<Background />
 
 			<div className="container relative flex flex-col items-center justify-center h-full max-w-screen-xl gap-12 mx-auto top-5">
-				{!isStartReading && <MainMenu onClickStart={onStartReading} />}
-				{isStartReading && (
-					<div className="overflow-hidden rounded-lg shadow-xl">
-						<HTMLFlipBook width={1036.5} height={518.25}>
-							{BOOK_DATA.pages.map((page) => (
-								<div key={page.number}>
-									<img src={page.image} alt="" />
-								</div>
-							))}
-						</HTMLFlipBook>
-					</div>
-				)}
+				<Routes>
+					<Route path="/read" element={<Read />} />
+					<Route path="/" exact element={<MainMenu />} />
+				</Routes>
 			</div>
 
-			<div className="absolute bottom-5 right-8">
+			<div className="absolute flex items-start gap-4 bottom-5 right-8">
+				{!IS_AT_HOME && <ButtonGoHome />}
 				<ButtonBacksound />
 			</div>
 		</div>

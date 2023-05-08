@@ -1,11 +1,15 @@
 import { ButtonIcon } from '@/components/atoms';
 import clsx from 'clsx';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import backsoundURL from '@/audios/curious_kiddo-david.mp3';
+import { useLocation } from 'react-router-dom';
 
 export const ButtonBacksound = () => {
 	const backsoundRef = useRef(null);
+	const location = useLocation();
+
+	const IS_READING = location.pathname === '/read';
 
 	const [isBacksoundReady, setIsBacksoundReady] = useState(false);
 	const [playing, setPlaying] = useState(false);
@@ -26,6 +30,11 @@ export const ButtonBacksound = () => {
 		backsoundRef.current.volume = 0.5;
 		setIsBacksoundReady(true);
 	};
+
+	useEffect(() => {
+		if (IS_READING) backsoundRef.current.volume = 0.02;
+		else backsoundRef.current.volume = 0.5;
+	}, [IS_READING]);
 
 	return (
 		<div className="flex items-center justify-center">
