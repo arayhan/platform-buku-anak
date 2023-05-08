@@ -5,6 +5,7 @@ import { MainMenu } from './pages';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ButtonGoHome } from './components/molecules/ButtonGoHome';
 import Read from './pages/Read/Read';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
 	const location = useLocation();
@@ -16,10 +17,12 @@ function App() {
 			<Background />
 
 			<div className="container relative flex flex-col items-center justify-center h-full max-w-screen-xl gap-12 mx-auto top-5">
-				<Routes>
-					<Route path="/read" element={<Read />} />
-					<Route path="/" exact element={<MainMenu />} />
-				</Routes>
+				<AnimatePresence mode="wait">
+					<Routes location={location} key={location.pathname}>
+						<Route path="/read" element={<Read />} />
+						<Route path="/" exact element={<MainMenu />} />
+					</Routes>
+				</AnimatePresence>
 			</div>
 
 			<div className="absolute flex items-start gap-4 bottom-5 right-8">
