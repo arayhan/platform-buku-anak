@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import backsoundURL from '@/audios/curious_kiddo-david.mp3';
+import { OpeningVoice } from './OpeningVoice';
 
 export const ButtonBacksound = () => {
 	const backsoundRef = useRef(null);

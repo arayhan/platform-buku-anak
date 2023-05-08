@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import openingVoiceSource from '@/audios/voice-over.wav';
 
-export const Opening = ({ onFinished }) => {
+export const OpeningVoice = ({ onFinished }) => {
 	const openingVoiceRef = useRef(null);
 
 	const onOpeningVoiceReady = () => {
@@ -17,10 +17,6 @@ export const Opening = ({ onFinished }) => {
 				onEnded={onFinished}
 				onLoadedData={onOpeningVoiceReady}
 			/>
-
-			<div className="relative max-w-[650px]">
-				<img className="z-0 mx-auto rounded-lg shadow-xl" src={require('@/images/cover.jpg')} alt="" />
-			</div>
 		</div>
 	);
 };

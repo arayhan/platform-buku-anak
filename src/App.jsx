@@ -1,11 +1,12 @@
 import React from 'react';
 import { Background } from './components/atoms';
 import { ButtonBacksound } from './components/molecules';
-import { MainMenu } from './pages';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ButtonGoHome } from './components/molecules/ButtonGoHome';
-import Read from './pages/Read/Read';
 import { AnimatePresence } from 'framer-motion';
+
+import { MainMenu } from './pages/MainMenu/MainMenu';
+import { Book } from './pages/Book/Book';
 
 function App() {
 	const location = useLocation();
@@ -19,7 +20,7 @@ function App() {
 			<div className="container relative flex flex-col items-center justify-center h-full max-w-screen-xl gap-12 mx-auto top-5">
 				<AnimatePresence mode="wait">
 					<Routes location={location} key={location.pathname}>
-						<Route path="/read" element={<Read />} />
+						<Route path="/book" element={<Book />} />
 						<Route path="/" exact element={<MainMenu />} />
 					</Routes>
 				</AnimatePresence>
