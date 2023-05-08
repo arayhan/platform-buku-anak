@@ -15,7 +15,7 @@ export const MainMenu = () => {
 				<img className="w-96" src={require('@/images/logo.png')} alt="" />
 
 				<div className="flex items-center justify-center w-full gap-3">
-					<ButtonIcon icon={require('@/images/symbol/start.png')} onClick={() => navigate('/read')} />
+					<ButtonIcon icon={require('@/images/symbol/start.png')} onClick={() => navigate('/book')} />
 				</div>
 			</div>
 		</Fade>
