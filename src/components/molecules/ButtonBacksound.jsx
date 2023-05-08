@@ -2,7 +2,7 @@ import { ButtonIcon } from '@/components/atoms';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 
-import backsoundURL from '@/audios/bensound-cutesttoys.mp3';
+import backsoundURL from '@/audios/curious_kiddo-david.mp3';
 
 export const ButtonBacksound = () => {
 	const backsoundRef = useRef(null);
