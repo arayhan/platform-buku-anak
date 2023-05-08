@@ -7,6 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 
 import { MainMenu } from './pages/MainMenu/MainMenu';
 import { Book } from './pages/Book/Book';
+import { Button } from './components/atoms/Button';
 
 function App() {
 	const location = useLocation();
@@ -26,8 +27,13 @@ function App() {
 				</AnimatePresence>
 			</div>
 
+			<div className="absolute flex items-start gap-4 top-5 left-8">{!IS_AT_HOME && <ButtonGoHome />}</div>
+
+			<div className="absolute flex items-start gap-4 bottom-5 left-8">
+				{IS_AT_HOME && <Button label="Petunjuk Penggunaan" />}
+			</div>
+
 			<div className="absolute flex items-start gap-4 bottom-5 right-8">
-				{!IS_AT_HOME && <ButtonGoHome />}
 				<ButtonBacksound />
 			</div>
 		</div>
