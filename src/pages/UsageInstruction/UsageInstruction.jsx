@@ -4,11 +4,11 @@ import React from 'react';
 export const UsageInstruction = () => {
 	return (
 		<Fade>
-			<div className="px-20 space-y-10 bg-white bg-opacity-20">
+			<div className="w-full max-h-[92vh] px-20 py-16 my-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
 				<div>
 					<h1 className="text-xl font-bold text-center">PETUNJUK PENGGUNAAN BUKU DIGITAL</h1>
 				</div>
-				<div className="space-y-6 overflow-y-scroll max-h-[500px]">
+				<div className="space-y-6">
 					<div className="space-y-3 leading-relaxed">
 						<h2 className="font-semibold">Bagi Orang Tua dan Pendidik</h2>
 						<p>

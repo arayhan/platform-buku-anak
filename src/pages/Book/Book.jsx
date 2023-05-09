@@ -19,8 +19,7 @@ export const Book = () => {
 	};
 
 	return (
-		<div className="relative -top-[30px]">
-			<Fade>
+			<Fade className="flex items-center justify-center h-screen">
 				<div className="flex items-center gap-6">
 					<ButtonIcon
 						icon={require('@/images/symbol/previous left.png')}
@@ -44,6 +43,5 @@ export const Book = () => {
 					/>
 				</div>
 			</Fade>
-		</div>
 	);
 };

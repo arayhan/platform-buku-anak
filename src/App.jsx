@@ -20,7 +20,7 @@ function App() {
 		<div className="h-screen max-h-screen overflow-hidden">
 			<Background />
 
-			<div className="container flex flex-col items-center justify-center h-full max-w-screen-xl gap-12 mx-auto">
+			<div className="container h-full max-w-screen-xl mx-auto">
 				<AnimatePresence mode="wait">
 					<Routes location={location} key={location.pathname}>
 						<Route path="/usage-instruction" element={<UsageInstruction />} />
