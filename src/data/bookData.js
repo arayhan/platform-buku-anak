@@ -46,7 +46,7 @@ export const BOOK_DATA = {
 		{
 			number: 3,
 			image: require('@/images/story-plain/3-min.jpg'),
-			audio: require('@/audios/voice-over/Hal 3 (enhanced) - With Sound Effect.mp3'),
+			audio: require('@/audios/voice-over/Hal 3 (enhanced) - Sound Effect.mp3'),
 			text: 'Kriiingg! Bel istirahat berbunyi. Teman-teman mengajak Habil pergi ke kantin. Habil bersemangat, ia langsung beranjak dari tempat duduknya. Tanpa sengaja, ia mendorong mejanya.',
 		},
 		{
