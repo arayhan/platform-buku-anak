@@ -11,8 +11,11 @@ import HTMLFlipBook from 'react-pageflip';
 export const Book = ({ isReadAloud = true }) => {
 	const bookRef = useRef(null);
 
+	const [time, setTime] = useState(0);
+	const [maxTime, setMaxTime] = useState(0);
 	const [page, setPage] = useState(0);
 	const [totalPage, setTotalPage] = useState(0);
+	const [pageData, setPageData] = useState(null);
 
 	const handleChangePage = (element) => {
 		setPage(element.data);
@@ -29,44 +32,68 @@ export const Book = ({ isReadAloud = true }) => {
 	};
 
 	useEffect(() => {
+		const selectedPage = BOOK_DATA.pages[page];
+
+		setTime(0);
+		setPageData(selectedPage);
+
 		if (bookRef.current.pageFlip()) {
 			setTotalPage(bookRef.current.pageFlip().getPageCount());
 		}
 	}, [page]);
 
+	// useEffect(() => {
+	// 	const interval = setInterval(() => {
+	// 		if (time <= maxTime) setTime((time) => time + 100);
+	// 		else clearInterval(interval);
+	// 	}, 100);
+
+	// 	return () => {
+	// 		clearInterval(interval);
+	// 	};
+	// }, [time, maxTime]);
+
 	return (
 		<Fade className="flex items-center justify-center h-screen">
 			{isReadAloud && <VoiceOver page={page} />}
 
-			<div className="flex items-center gap-6">
-				<ButtonIcon
-					icon={require('@/images/symbol/previous left.png')}
-					className={clsx('w-16 ')}
-					onClick={handleGoToPrevPage}
-					disabled={page === 0}
-				/>
-				<div className="overflow-hidden rounded-lg shadow-xl">
-					<HTMLFlipBook
-						ref={bookRef}
-						width={1036.5}
-						height={518.25}
-						onFlip={handleChangePage}
-						flippingTime={500}
-						showPageCorners
-					>
-						{BOOK_DATA.pages.map((page) => (
-							<div key={page.number}>
-								<img src={page.image} alt="" />
-							</div>
-						))}
-					</HTMLFlipBook>
+			<div className="grid max-w-screen-lg grid-cols-12 gap-6">
+				<div className="flex items-center justify-center col-span-1">
+					<ButtonIcon
+						icon={require('@/images/symbol/previous left.png')}
+						className={clsx('w-12')}
+						onClick={handleGoToPrevPage}
+						disabled={page === 0}
+					/>
 				</div>
-				<ButtonIcon
-					icon={require('@/images/symbol/previous right.png')}
-					className={clsx('w-16 ')}
-					onClick={handleGoToNextPage}
-					disabled={page === totalPage - 1}
-				/>
+				<div className="flex flex-col items-center justify-center col-span-10">
+					<div>
+						<HTMLFlipBook
+							ref={bookRef}
+							autoSize
+							width={836.5}
+							height={418.25}
+							onFlip={handleChangePage}
+							flippingTime={500}
+							showPageCorners
+						>
+							{BOOK_DATA.pages?.map((page) => (
+								<div key={page.number} className="w-full overflow-hidden rounded-lg shadow-xl">
+									<img className="w-full" src={page.image} alt="" />
+								</div>
+							))}
+						</HTMLFlipBook>
+					</div>
+					<div className="mt-4 text-sm text-center lg:text-lg">{pageData?.text}</div>
+				</div>
+				<div className="flex items-center justify-center col-span-1">
+					<ButtonIcon
+						icon={require('@/images/symbol/previous right.png')}
+						className={clsx('w-12')}
+						onClick={handleGoToNextPage}
+						disabled={page === totalPage - 1}
+					/>
+				</div>
 			</div>
 		</Fade>
 	);

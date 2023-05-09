@@ -10,7 +10,7 @@ export const ButtonBacksound = () => {
 	const backsoundRef = useRef(null);
 	const location = useLocation();
 
-	const IS_READING = location.pathname === '/read';
+	const IS_READING = location.pathname === '/book';
 
 	const [isBacksoundReady, setIsBacksoundReady] = useState(false);
 	const [playing, setPlaying] = useState(false);
@@ -34,8 +34,8 @@ export const ButtonBacksound = () => {
 
 	useEffect(() => {
 		if (IS_READING) backsoundRef.current.volume = 0.02;
-		else backsoundRef.current.volume = 0.5;
-	}, [IS_READING]);
+		else backsoundRef.current.volume = 0.3;
+	}, [backsoundRef, location, IS_READING]);
 
 	return (
 		<div className="flex items-center justify-center">
