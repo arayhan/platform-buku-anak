@@ -28,7 +28,7 @@ export const ButtonBacksound = () => {
 	};
 
 	const onBacksoundReady = () => {
-		backsoundRef.current.volume = 0.5;
+		backsoundRef.current.volume = 0.3;
 		setIsBacksoundReady(true);
 	};
 
