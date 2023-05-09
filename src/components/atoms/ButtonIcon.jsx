@@ -6,7 +6,7 @@ export const ButtonIcon = ({ className, children, icon, onClick, disabled }) => 
 		<button
 			className={clsx(
 				['transition-all origin-center transform active:scale-100 hover:scale-105 outline-none'],
-				className || 'w-32',
+				className || 'w-28',
 				disabled && 'opacity-50'
 			)}
 			onClick={onClick}
