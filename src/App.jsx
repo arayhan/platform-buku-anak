@@ -37,15 +37,15 @@ function App() {
 				</AnimatePresence>
 			</div>
 
-			<div className="absolute flex items-start gap-4 top-5 left-8">{!IS_AT_HOME && <ButtonGoHome />}</div>
-
-			<div className="absolute flex items-start gap-4 bottom-5 left-8">
+			<div className="absolute flex items-start gap-4 top-5 left-8">
+				{!IS_AT_HOME && <ButtonGoHome />}
 				{IS_AT_BOOK && <ButtonReadingMode />}
 				{IS_AT_HOME && <Button label="Petunjuk Penggunaan" onClick={() => navigate('/usage-instruction')} />}
-				{IS_AT_HOME && <Button label="Author" onClick={() => navigate('/author')} />}
 			</div>
 
-			<div className="absolute flex items-start gap-4 bottom-5 right-8">
+			<div className="absolute flex items-start gap-4 bottom-5 left-8"></div>
+
+			<div className="absolute flex items-start gap-4 top-5 right-8">
 				<ButtonScreenshot exportRef={exportRef} />
 				<ButtonBacksound />
 			</div>

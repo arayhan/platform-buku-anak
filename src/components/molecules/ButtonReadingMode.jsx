@@ -18,10 +18,16 @@ export const ButtonReadingMode = () => {
 
 	return (
 		<Fade className="flex items-center justify-center">
-			<div className="font-semibold text-center ">
-				<div className="flex items-center gap-4">
-					<ButtonIcon icon={require('@/images/symbol/buku.png')} className={clsx('w-12')} onClick={toggleFullScreen} />
-					<div className="text-app-blue-sapphire-500">MODE BACA : {isFullScreen ? 'ON' : 'OFF'}</div>
+			<div className="font-semibold">
+				<div className="flex items-center gap-3">
+					<ButtonIcon
+						icon={require('@/images/symbol/buku.png')}
+						className={clsx('w-10 md:w-11 lg:w-12')}
+						onClick={toggleFullScreen}
+					/>
+					<div className="text-xs sm:text-sm text-app-blue-sapphire-500 md:text-base">
+						MODE BACA : <br /> {isFullScreen ? 'ON' : 'OFF'}
+					</div>
 				</div>
 			</div>
 		</Fade>

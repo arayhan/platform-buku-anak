@@ -64,46 +64,43 @@ export const Book = ({ isReadAloud = true }) => {
 	// }, [time, maxTime]);
 
 	return (
-		<Fade className="flex items-center justify-center h-screen">
+		<Fade>
 			{isReadAloud && <VoiceOver onEnded={handleVoiceOverEnded} page={page} />}
 
-			<div className="grid max-w-screen-lg grid-cols-12 gap-6">
-				<div className="flex items-center justify-center col-span-1">
-					<ButtonIcon
-						icon={require('@/images/symbol/previous left.png')}
-						className={clsx('w-12')}
-						onClick={handleGoToPrevPage}
-						disabled={page === 0}
-					/>
-				</div>
-				<div className="flex flex-col justify-center col-span-10">
-					<div>
-						<HTMLFlipBook
-							ref={bookRef}
-							autoSize
-							width={836.5}
-							height={418.25}
-							onFlip={handleChangePage}
-							flippingTime={500}
-							showPageCorners
-						>
-							{BOOK_DATA.pages?.map((page) => (
-								<div key={page.number} className="w-full overflow-hidden rounded-lg shadow-xl">
-									<img className="w-full" src={page.image} alt="" />
-								</div>
-							))}
-						</HTMLFlipBook>
-					</div>
-					<div className="mt-4 text-sm text-center lg:text-lg">{pageData?.text}</div>
-				</div>
-				<div className="flex items-center justify-center col-span-1">
-					<ButtonIcon
-						icon={require('@/images/symbol/previous right.png')}
-						className={clsx('w-12')}
-						onClick={handleGoToNextPage}
-						disabled={page === totalPage - 1}
-					/>
-				</div>
+			<div className="flex flex-col justify-center h-screen max-w-screen-lg mx-auto -mt-8">
+				<HTMLFlipBook
+					ref={bookRef}
+					autoSize
+					width={656.5}
+					height={328.25}
+					onFlip={handleChangePage}
+					flippingTime={500}
+					showPageCorners
+					mobileScrollSupport
+				>
+					{BOOK_DATA.pages?.map((page) => (
+						<div key={page.number} className="w-[80vw] h-full overflow-hidden rounded-lg shadow-xl">
+							<img className="object-contain w-[92vw] rounded-lg h-full" src={page.image} alt="" />
+						</div>
+					))}
+				</HTMLFlipBook>
+
+				<div className="mt-4 text-sm text-center md:-mt-5 lg:-mt-16 lg:text-lg">{pageData?.text}</div>
+			</div>
+
+			<div className="absolute flex items-center justify-center gap-8 transform -translate-x-1/2 bottom-8 left-1/2">
+				<ButtonIcon
+					icon={require('@/images/symbol/previous left.png')}
+					className={clsx('w-12')}
+					onClick={handleGoToPrevPage}
+					disabled={page === 0}
+				/>
+				<ButtonIcon
+					icon={require('@/images/symbol/previous right.png')}
+					className={clsx('w-12')}
+					onClick={handleGoToNextPage}
+					disabled={page === totalPage - 1}
+				/>
 			</div>
 		</Fade>
 	);

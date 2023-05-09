@@ -4,7 +4,7 @@ import React from 'react';
 export const UsageInstruction = () => {
 	return (
 		<Fade>
-			<div className="w-full max-h-[92vh] px-20 py-16 my-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
+			<div className="w-full max-h-[92vh] px-8 sm:px-12 md:px-20 py-8 md:py-16 mt-20 lg:mt-8 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
 				<div>
 					<h1 className="text-xl font-bold text-center">PETUNJUK PENGGUNAAN BUKU DIGITAL</h1>
 				</div>

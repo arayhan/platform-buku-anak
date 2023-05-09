@@ -10,7 +10,11 @@ export const ButtonGoHome = () => {
 	return (
 		<Fade className="flex items-center justify-center">
 			<div className="text-sm text-center">
-				<ButtonIcon icon={require('@/images/symbol/home.png')} className={clsx('w-12')} onClick={() => navigate('/')} />
+				<ButtonIcon
+					icon={require('@/images/symbol/home.png')}
+					className={clsx('w-10 md:w-11 lg:w-12')}
+					onClick={() => navigate('/')}
+				/>
 			</div>
 		</Fade>
 	);
