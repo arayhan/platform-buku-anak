@@ -10,6 +10,7 @@ import { Book } from './pages/Book/Book';
 import { Button } from './components/atoms/Button';
 import { UsageInstruction } from './pages/UsageInstruction/UsageInstruction';
 import { ButtonScreenshot } from './components/molecules/ButtonScreenshot';
+import { Author } from './pages/Author/Author';
 
 function App() {
 	const navigate = useNavigate();
@@ -27,6 +28,7 @@ function App() {
 				<AnimatePresence mode="wait">
 					<Routes location={location} key={location.pathname}>
 						<Route path="/usage-instruction" element={<UsageInstruction />} />
+						<Route path="/author" element={<Author />} />
 						<Route path="/book" element={<Book />} />
 						<Route path="/" exact element={<MainMenu />} />
 					</Routes>
