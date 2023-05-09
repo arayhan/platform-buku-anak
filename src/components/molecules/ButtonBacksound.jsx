@@ -28,13 +28,13 @@ export const ButtonBacksound = () => {
 	};
 
 	const onBacksoundReady = () => {
-		backsoundRef.current.volume = 0.3;
+		backsoundRef.current.volume = 0.25;
 		setIsBacksoundReady(true);
 	};
 
 	useEffect(() => {
-		if (IS_READING) backsoundRef.current.volume = 0.02;
-		else backsoundRef.current.volume = 0.3;
+		if (IS_READING) backsoundRef.current.volume = 0.15;
+		else backsoundRef.current.volume = 0.25;
 	}, [backsoundRef, location, IS_READING]);
 
 	return (
