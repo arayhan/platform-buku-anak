@@ -15,6 +15,7 @@ export const Book = ({ isReadAloud = true }) => {
 
 	const [time, setTime] = useState(0);
 	const [maxTime, setMaxTime] = useState(0);
+	const [isPause, setIsPause] = useState(false);
 	const [page, setPage] = useState(0);
 	const [totalPage, setTotalPage] = useState(0);
 	const [pageData, setPageData] = useState(null);
@@ -65,9 +66,9 @@ export const Book = ({ isReadAloud = true }) => {
 
 	return (
 		<Fade>
-			{isReadAloud && <VoiceOver onEnded={handleVoiceOverEnded} page={page} />}
+			{isReadAloud && <VoiceOver isPause={isPause} onEnded={handleVoiceOverEnded} page={page} />}
 
-			<div className="flex flex-col justify-center h-screen max-w-screen-lg mx-auto -mt-8">
+			<div className="flex flex-col justify-center h-screen max-w-screen-lg mx-auto -mt-12">
 				<HTMLFlipBook
 					ref={bookRef}
 					autoSize
@@ -88,12 +89,17 @@ export const Book = ({ isReadAloud = true }) => {
 				<div className="mt-4 text-sm text-center md:-mt-5 lg:-mt-16 lg:text-lg">{pageData?.text}</div>
 			</div>
 
-			<div className="absolute flex items-center justify-center gap-8 transform -translate-x-1/2 bottom-8 left-1/2">
+			<div className="absolute flex items-center justify-center gap-16 transform -translate-x-1/2 md:gap-24 bottom-8 left-1/2">
 				<ButtonIcon
 					icon={require('@/images/symbol/previous left.png')}
 					className={clsx('w-12')}
 					onClick={handleGoToPrevPage}
 					disabled={page === 0}
+				/>
+				<ButtonIcon
+					icon={require(`@/images/symbol/${isPause ? 'play' : 'pause'}.png`)}
+					className={clsx('w-12')}
+					onClick={() => setIsPause((isPause) => !isPause)}
 				/>
 				<ButtonIcon
 					icon={require('@/images/symbol/previous right.png')}
