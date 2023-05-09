@@ -1,4 +1,4 @@
-export const playSoundEffect = (soundEffect) => {
+export const playSound = (soundEffect) => {
 	const audio = new Audio(soundEffect);
 	audio.play();
 };

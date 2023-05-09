@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import openingVoiceSource from '@/audios/voice-over.wav';
+import openingVoiceSource from '@/audios/opening.wav';
 
 export const OpeningVoice = ({ onFinished }) => {
 	const openingVoiceRef = useRef(null);

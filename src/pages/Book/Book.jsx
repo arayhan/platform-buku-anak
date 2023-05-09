@@ -1,13 +1,14 @@
 import { ButtonIcon } from '@/components/atoms';
+import { VoiceOver } from '@/components/molecules/VoiceOver';
 import { BOOK_DATA } from '@/data/bookData';
 import { Fade } from '@/transitions/Fade/Fade';
-import { playSoundEffect } from '@/utils/helpers';
+import { playSound } from '@/utils/helpers';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 
-export const Book = () => {
+export const Book = ({ isReadAloud = true }) => {
 	const bookRef = useRef(null);
 
 	const [page, setPage] = useState(0);
@@ -19,12 +20,12 @@ export const Book = () => {
 
 	const handleGoToPrevPage = () => {
 		bookRef.current.pageFlip().flipPrev();
-		playSoundEffect(require('@/audios/book_page_turn.mp3'));
+		playSound(require('@/audios/book_page_turn.mp3'));
 	};
 
 	const handleGoToNextPage = () => {
 		bookRef.current.pageFlip().flipNext();
-		playSoundEffect(require('@/audios/book_page_turn.mp3'));
+		playSound(require('@/audios/book_page_turn.mp3'));
 	};
 
 	useEffect(() => {
@@ -33,10 +34,10 @@ export const Book = () => {
 		}
 	}, [page]);
 
-	console.log({ page, totalPage });
-
 	return (
 		<Fade className="flex items-center justify-center h-screen">
+			{isReadAloud && <VoiceOver page={page} />}
+
 			<div className="flex items-center gap-6">
 				<ButtonIcon
 					icon={require('@/images/symbol/previous left.png')}
