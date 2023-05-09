@@ -11,6 +11,7 @@ import { Button } from './components/atoms/Button';
 import { UsageInstruction } from './pages/UsageInstruction/UsageInstruction';
 import { ButtonScreenshot } from './components/molecules/ButtonScreenshot';
 import { Author } from './pages/Author/Author';
+import { ButtonReadingMode } from './components/molecules/ButtonReadingMode';
 
 function App() {
 	const navigate = useNavigate();
@@ -19,6 +20,7 @@ function App() {
 	const exportRef = useRef();
 
 	const IS_AT_HOME = location.pathname === '/';
+	const IS_AT_BOOK = location.pathname === '/book';
 
 	return (
 		<div ref={exportRef} className="h-screen max-h-screen overflow-hidden">
@@ -38,6 +40,7 @@ function App() {
 			<div className="absolute flex items-start gap-4 top-5 left-8">{!IS_AT_HOME && <ButtonGoHome />}</div>
 
 			<div className="absolute flex items-start gap-4 bottom-5 left-8">
+				{IS_AT_BOOK && <ButtonReadingMode />}
 				{IS_AT_HOME && <Button label="Petunjuk Penggunaan" onClick={() => navigate('/usage-instruction')} />}
 				{IS_AT_HOME && <Button label="Author" onClick={() => navigate('/author')} />}
 			</div>
