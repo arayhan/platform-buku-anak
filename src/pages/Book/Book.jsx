@@ -7,9 +7,11 @@ import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
+import { useNavigate } from 'react-router-dom';
 
 export const Book = ({ isReadAloud = true }) => {
 	const bookRef = useRef(null);
+	const navigate = useNavigate();
 
 	const [time, setTime] = useState(0);
 	const [maxTime, setMaxTime] = useState(0);
@@ -29,6 +31,14 @@ export const Book = ({ isReadAloud = true }) => {
 	const handleGoToNextPage = () => {
 		bookRef.current.pageFlip().flipNext();
 		playSound(require('@/audios/book_page_turn.mp3'));
+	};
+
+	const handleVoiceOverEnded = () => {
+		if (page >= bookRef.current.pageFlip().pages.pages.length - 1) {
+			navigate('/book/finish');
+		} else {
+			handleGoToNextPage();
+		}
 	};
 
 	useEffect(() => {
@@ -55,7 +65,7 @@ export const Book = ({ isReadAloud = true }) => {
 
 	return (
 		<Fade className="flex items-center justify-center h-screen">
-			{isReadAloud && <VoiceOver page={page} />}
+			{isReadAloud && <VoiceOver onEnded={handleVoiceOverEnded} page={page} />}
 
 			<div className="grid max-w-screen-lg grid-cols-12 gap-6">
 				<div className="flex items-center justify-center col-span-1">
@@ -66,7 +76,7 @@ export const Book = ({ isReadAloud = true }) => {
 						disabled={page === 0}
 					/>
 				</div>
-				<div className="flex flex-col items-center justify-center col-span-10">
+				<div className="flex flex-col justify-center col-span-10">
 					<div>
 						<HTMLFlipBook
 							ref={bookRef}
