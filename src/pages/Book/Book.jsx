@@ -15,7 +15,7 @@ export const Book = ({ isReadAloud = true }) => {
 
 	const [time, setTime] = useState(0);
 	const [maxTime, setMaxTime] = useState(0);
-	const [isPause, setIsPause] = useState(false);
+	const [isPause, setIsPause] = useState(true);
 	const [page, setPage] = useState(0);
 	const [totalPage, setTotalPage] = useState(0);
 	const [pageData, setPageData] = useState(null);
@@ -47,6 +47,7 @@ export const Book = ({ isReadAloud = true }) => {
 
 		setTime(0);
 		setPageData(selectedPage);
+		setIsPause(false);
 
 		if (bookRef.current.pageFlip()) {
 			setTotalPage(bookRef.current.pageFlip().getPageCount());
@@ -96,11 +97,13 @@ export const Book = ({ isReadAloud = true }) => {
 					onClick={handleGoToPrevPage}
 					disabled={page === 0}
 				/>
-				<ButtonIcon
-					icon={require(`@/images/symbol/${isPause ? 'play' : 'pause'}.png`)}
-					className={clsx('w-12')}
-					onClick={() => setIsPause((isPause) => !isPause)}
-				/>
+				{isReadAloud && (
+					<ButtonIcon
+						icon={require(`@/images/symbol/${isPause ? 'play' : 'pause'}.png`)}
+						className={clsx('w-12')}
+						onClick={() => setIsPause((isPause) => !isPause)}
+					/>
+				)}
 				<ButtonIcon
 					icon={require('@/images/symbol/previous right.png')}
 					className={clsx('w-12')}

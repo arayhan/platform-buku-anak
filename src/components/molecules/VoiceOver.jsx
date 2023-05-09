@@ -9,12 +9,12 @@ export const VoiceOver = ({ page, isPause, onEnded }) => {
 
 	useEffect(() => {
 		if (voiceOverRef.current) {
-			voiceOverRef.current.pause();
+			handlePause();
 			voiceOverRef.current.currentTime = 0;
 			voiceOverRef.current.src = BOOK_DATA.pages[page].audio;
-			voiceOverRef.current.play();
+			handlePlay();
 		}
-	}, [voiceOverRef, page]);
+	}, [isPause, voiceOverRef, page]);
 
 	useEffect(() => {
 		if (isPause) handlePause();
