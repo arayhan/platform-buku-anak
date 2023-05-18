@@ -9,9 +9,8 @@ import { MainMenu } from './pages/MainMenu/MainMenu';
 import { Book } from './pages/Book/Book';
 import { Button } from './components/atoms/Button';
 import { UsageInstruction } from './pages/UsageInstruction/UsageInstruction';
-import { ButtonScreenshot } from './components/molecules/ButtonScreenshot';
 import { Author } from './pages/Author/Author';
-import { ButtonReadingMode } from './components/molecules/ButtonReadingMode';
+import { ButtonFullScreen } from './components/molecules/ButtonFullScreen';
 
 function App() {
 	const navigate = useNavigate();
@@ -39,14 +38,14 @@ function App() {
 
 			<div className="absolute flex items-start gap-4 top-5 left-8">
 				{!IS_AT_HOME && <ButtonGoHome />}
-				{IS_AT_BOOK && <ButtonReadingMode />}
+
 				{IS_AT_HOME && <Button label="Petunjuk Penggunaan" onClick={() => navigate('/usage-instruction')} />}
 			</div>
 
 			<div className="absolute flex items-start gap-4 bottom-5 left-8"></div>
 
 			<div className="absolute flex items-start gap-4 top-5 right-8">
-				<ButtonScreenshot exportRef={exportRef} />
+				<ButtonFullScreen />
 				<ButtonBacksound />
 			</div>
 		</div>

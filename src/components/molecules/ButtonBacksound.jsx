@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import backsoundURL from '@/audios/curious_kiddo-david.mp3';
-import { OpeningVoice } from './OpeningVoice';
+import { Tooltip } from 'react-tooltip';
 
 export const ButtonBacksound = () => {
 	const backsoundRef = useRef(null);
@@ -38,24 +38,29 @@ export const ButtonBacksound = () => {
 	}, [backsoundRef, location, IS_READING]);
 
 	return (
-		<div className="flex items-center justify-center">
-			<audio
-				ref={backsoundRef}
-				src={backsoundURL}
-				autoPlay
-				loop
-				onLoadedData={onBacksoundReady}
-				onPlay={() => setPlaying(true)}
-			/>
-
-			<div className="text-sm text-center">
-				<ButtonIcon
-					icon={require('@/images/symbol/music.png')}
-					className={clsx('w-10 md:w-11 lg:w-12', !IS_MUSIC_ON && 'opacity-50')}
-					onClick={toggleBacksound}
+		<>
+			<div id="buttonBacksound" className="flex items-center justify-center">
+				<audio
+					ref={backsoundRef}
+					src={backsoundURL}
+					autoPlay
+					loop
+					onLoadedData={onBacksoundReady}
+					onPlay={() => setPlaying(true)}
 				/>
-				<div>{IS_MUSIC_ON ? 'ON' : 'OFF'}</div>
+
+				<div className="text-sm text-center">
+					<ButtonIcon
+						icon={require('@/images/symbol/music.png')}
+						className={clsx('w-10 md:w-11 lg:w-12', !IS_MUSIC_ON && 'opacity-50')}
+						onClick={toggleBacksound}
+					/>
+					<div>{IS_MUSIC_ON ? 'ON' : 'OFF'}</div>
+				</div>
 			</div>
-		</div>
+			<Tooltip anchorSelect="#buttonBacksound" place="top">
+				Music
+			</Tooltip>
+		</>
 	);
 };

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { ButtonIcon } from '../atoms';
 import clsx from 'clsx';
 import { Fade } from '@/transitions/Fade/Fade';
+import { TbCapture } from 'react-icons/tb';
+import { Tooltip } from 'react-tooltip';
 
-export const ButtonReadingMode = () => {
+export const ButtonFullScreen = () => {
 	const [isFullScreen, setIsFullScreen] = useState(false);
 
 	const toggleFullScreen = () => {
@@ -18,18 +20,20 @@ export const ButtonReadingMode = () => {
 
 	return (
 		<Fade className="flex items-center justify-center">
-			<div className="font-semibold">
-				<div className="flex items-center gap-3">
-					<ButtonIcon
-						icon={require('@/images/symbol/buku.png')}
-						className={clsx('w-10 md:w-11 lg:w-12')}
-						onClick={toggleFullScreen}
-					/>
-					<div className="text-xs sm:text-sm text-app-blue-sapphire-500 md:text-base">
-						MODE BACA : <br /> {isFullScreen ? 'ON' : 'OFF'}
-					</div>
-				</div>
-			</div>
+			<ButtonIcon
+				id="buttonFullScreen"
+				className={clsx(
+					'flex items-center justify-center',
+					'w-10 md:w-11 lg:w-12 h-10 md:h-11 lg:h-12 text-sm text-[1.8em]',
+					'text-white rounded-lg cursor-pointer bg-app-carmine-pink'
+				)}
+				onClick={toggleFullScreen}
+			>
+				<TbCapture />
+			</ButtonIcon>
+			<Tooltip anchorSelect="#buttonFullScreen" place="top">
+				Fullscreen
+			</Tooltip>
 		</Fade>
 	);
 };

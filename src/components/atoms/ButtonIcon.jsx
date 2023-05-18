@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 
-export const ButtonIcon = ({ className, children, icon, onClick, disabled }) => {
+export const ButtonIcon = ({ className, children, icon, onClick, disabled, ...props }) => {
 	return (
 		<button
 			className={clsx(
@@ -11,6 +11,7 @@ export const ButtonIcon = ({ className, children, icon, onClick, disabled }) => 
 			)}
 			onClick={onClick}
 			disabled={disabled}
+			{...props}
 		>
 			{icon && <img src={icon} alt="" />}
 			{children}
