@@ -15,6 +15,7 @@ import { ButtonFullScreen } from './components/molecules/ButtonFullScreen';
 import { SplashScreen } from './pages/SplashScreen/SplashScreen';
 import { FinishMenu } from './pages/FinishMenu/FinishMenu';
 import { Glossary } from './pages/Glossary/Glossary';
+import { useAppStore } from './store/store';
 
 function App() {
 	const navigate = useNavigate();
@@ -24,9 +25,10 @@ function App() {
 
 	const exportRef = useRef();
 
+	const { showSplashScreen } = useAppStore();
+
 	const IS_AT_HOME = pathname === '/';
 	const IS_AT_SPLASH = pathname === '/splash';
-	const IS_AT_USAGE_INSTRUCTION = pathname === '/usage-instruction';
 
 	return (
 		<div ref={exportRef} className="h-screen max-h-screen overflow-hidden">
@@ -49,7 +51,7 @@ function App() {
 
 			{!IS_AT_SPLASH && (
 				<div className="absolute flex items-start gap-4 top-5 left-8">
-					{!IS_AT_HOME && !IS_AT_USAGE_INSTRUCTION && !IS_AT_SPLASH && <ButtonGoHome />}
+					{!IS_AT_HOME && !showSplashScreen && !IS_AT_SPLASH && <ButtonGoHome />}
 					{IS_AT_HOME && (
 						<Button icon={require('@/images/symbol/buku.png')} size="sm" onClick={() => navigate('/usage-instruction')}>
 							Petunjuk Penggunaan
