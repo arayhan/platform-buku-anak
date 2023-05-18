@@ -1,10 +1,31 @@
+import { Button } from '@/components/atoms/Button';
+import { useAppStore } from '@/store/store';
 import { Fade } from '@/transitions/Fade/Fade';
-import React from 'react';
+import React, { useState } from 'react';
+import { notify } from 'react-notify-toast';
+import { useNavigate } from 'react-router-dom';
 
 export const UsageInstruction = () => {
+	const navigate = useNavigate();
+
+	const { showSplashScreen, setShowSplashScreen } = useAppStore();
+
+	const [isUnderstand, setIsUnderstand] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
+
+	const handleClickStart = () => {
+		if (isUnderstand) {
+			setShowSplashScreen(false);
+			navigate('/');
+		} else {
+			notify.show('Harap centang tombol di bawah untuk melanjutkan', 'warning', 3000);
+			setErrorMessage('Harap centang petunjuk penggunaan ini telah dipahami');
+		}
+	};
+
 	return (
-		<Fade>
-			<div className="w-full max-h-[92vh] px-8 sm:px-12 md:px-20 py-8 md:py-16 mt-20 lg:mt-8 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
+		<Fade className="flex flex-col justify-between h-screen">
+			<div className="w-full max-h-[79vh] px-8 sm:px-12 md:px-20 py-8 md:py-16 mt-20 lg:mt-8 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
 				<div>
 					<h1 className="text-xl font-bold text-center">PETUNJUK PENGGUNAAN BUKU DIGITAL</h1>
 				</div>
@@ -56,6 +77,28 @@ export const UsageInstruction = () => {
 					</div>
 				</div>
 			</div>
+			{showSplashScreen && (
+				<div className="flex justify-between mb-6">
+					<div className="flex flex-col items-start justify-center gap-1">
+						<div className="flex items-center">
+							<input
+								className="p-3 rounded-md hover:cursor-pointer checked:bg-app-blue-sapphire-500 focus:ring-app-blue-sapphire-500 border-app-blue-sapphire-500"
+								type="checkbox"
+								id="understand"
+								value={isUnderstand}
+								onChange={() => setIsUnderstand(!isUnderstand)}
+							/>
+							<label htmlFor="understand" className="ml-2 text-xl hover:cursor-pointer">
+								Saya Mengerti
+							</label>
+						</div>
+						{errorMessage && !isUnderstand && <div className="text-red-500">{errorMessage}</div>}
+					</div>
+					<div>
+						<Button size="lg" label="Mulai" onClick={handleClickStart} />
+					</div>
+				</div>
+			)}
 		</Fade>
 	);
 };

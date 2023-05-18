@@ -4,6 +4,7 @@ import { ButtonBacksound } from './components/molecules';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ButtonGoHome } from './components/molecules/ButtonGoHome';
 import { AnimatePresence } from 'framer-motion';
+import Notifications from 'react-notify-toast';
 
 import { MainMenu } from './pages/MainMenu/MainMenu';
 import { Book } from './pages/Book/Book';
@@ -11,10 +12,13 @@ import { Button } from './components/atoms/Button';
 import { UsageInstruction } from './pages/UsageInstruction/UsageInstruction';
 import { Author } from './pages/Author/Author';
 import { ButtonFullScreen } from './components/molecules/ButtonFullScreen';
+import { useAppStore } from './store/store';
 
 function App() {
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	const { showSplashScreen } = useAppStore();
 
 	const exportRef = useRef();
 
@@ -24,6 +28,7 @@ function App() {
 	return (
 		<div ref={exportRef} className="h-screen max-h-screen overflow-hidden">
 			<Background />
+			<Notifications />
 
 			<div className="container h-full max-w-screen-xl mx-auto">
 				<AnimatePresence mode="wait">
@@ -37,8 +42,7 @@ function App() {
 			</div>
 
 			<div className="absolute flex items-start gap-4 top-5 left-8">
-				{!IS_AT_HOME && <ButtonGoHome />}
-
+				{!IS_AT_HOME && !showSplashScreen && <ButtonGoHome />}
 				{IS_AT_HOME && <Button label="Petunjuk Penggunaan" onClick={() => navigate('/usage-instruction')} />}
 			</div>
 
