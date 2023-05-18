@@ -1,4 +1,5 @@
 import { Button } from '@/components/atoms/Button';
+import { SpeechToText } from '@/components/molecules/SpeechToText';
 import { QUIZ_DATA } from '@/data/quizData';
 import { Fade } from '@/transitions/Fade/Fade';
 import { QUIZ_TYPE } from '@/utils/constants';
@@ -33,8 +34,6 @@ export const Quiz = () => {
 		setCurrentIndex(currentIndex - 1);
 	};
 
-	console.log({ answers });
-
 	return (
 		<Fade>
 			<div className="w-full max-h-[92vh] px-20 py-16 mt-16 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
@@ -47,8 +46,18 @@ export const Quiz = () => {
 						<div>
 							Pertanyaan {currentIndex + 1} dari {QUIZ_DATA.length}
 						</div>
-						<h1 className="text-xl font-bold">{currentQuiz.question}</h1>
+						<h1 className="text-xl font-semibold">{currentQuiz.question}</h1>
+						{currentQuiz.type === QUIZ_TYPE.INPUT_SOUND && <h1 className="text-xl font-bold">"{currentQuiz.text}"</h1>}
 					</div>
+					{currentQuiz.type === QUIZ_TYPE.INPUT_SOUND && (
+						<div className="flex flex-col items-center justify-center gap-4">
+							<SpeechToText
+								request={currentQuiz.text.toLowerCase().replace(/[^a-zA-Z ]/g, '')}
+								onChangeTranscript={(transcript) => setAnswers(transcript)}
+							/>
+							{currentAnswer && <audio src={currentAnswer} controls autoPlay />}
+						</div>
+					)}
 					{currentQuiz.type === QUIZ_TYPE.OPTION && (
 						<div className="grid gap-3">
 							{currentQuiz.options.map((option, index) => {
