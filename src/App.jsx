@@ -13,6 +13,7 @@ import { UsageInstruction } from './pages/UsageInstruction/UsageInstruction';
 import { Author } from './pages/Author/Author';
 import { ButtonFullScreen } from './components/molecules/ButtonFullScreen';
 import { SplashScreen } from './pages/SplashScreen/SplashScreen';
+import { FinishMenu } from './pages/FinishMenu/FinishMenu';
 
 function App() {
 	const navigate = useNavigate();
@@ -39,6 +40,7 @@ function App() {
 						<Route path="/author" element={<Author />} />
 						<Route path="/book" element={<Book />} />
 						<Route path="/splash" element={<SplashScreen />} />
+						<Route path="/book/finish" element={<FinishMenu />} />
 					</Routes>
 				</AnimatePresence>
 			</div>
