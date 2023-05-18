@@ -95,7 +95,7 @@ export const UsageInstruction = () => {
 						{errorMessage && !isUnderstand && <div className="text-red-500">{errorMessage}</div>}
 					</div>
 					<div>
-						<Button size="lg" label="Mulai" onClick={handleClickStart} />
+						<Button size="lg" label="Lanjut" onClick={handleClickStart} />
 					</div>
 				</div>
 			)}

@@ -1,10 +1,18 @@
 import { ButtonIcon } from '@/components/atoms';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Fade } from '@/transitions/Fade/Fade';
+import { useAppStore } from '@/store/store';
 
 export const MainMenu = () => {
 	const navigate = useNavigate();
+
+	const { showSplashScreen } = useAppStore();
+
+	useEffect(() => {
+		if (showSplashScreen) navigate('/splash');
+	}, [navigate, showSplashScreen]);
+
 	return (
 		<Fade className="flex flex-col items-center justify-center w-full h-screen gap-8 rounded-lg md:flex-row">
 			<div className="relative w-full md:w-1/2">
