@@ -1,10 +1,14 @@
+import { Button } from '@/components/atoms/Button';
 import { Fade } from '@/transitions/Fade/Fade';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Author = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Fade>
-			<div className="w-full max-h-[92vh] px-20 py-16 my-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
+			<div className="w-full max-h-[80vh] px-20 py-14 my-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
 				<div>
 					<h1 className="text-xl font-bold text-center">Author</h1>
 				</div>
@@ -85,6 +89,9 @@ export const Author = () => {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="flex items-center justify-center">
+				<Button label="Kembali" onClick={() => navigate(-1)} />
 			</div>
 		</Fade>
 	);

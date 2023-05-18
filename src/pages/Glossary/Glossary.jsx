@@ -1,7 +1,11 @@
 import { Fade } from '@/transitions/Fade/Fade';
 import './Glossary.css';
+import { Button } from '@/components/atoms/Button';
+import { useNavigate } from 'react-router-dom';
 
 export const Glossary = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Fade>
 			<div className="w-full max-h-[92vh] px-20 py-16 mt-16 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
@@ -42,6 +46,9 @@ export const Glossary = () => {
 						</tr>
 					</table>
 				</div>
+			</div>
+			<div className="flex items-center justify-center">
+				<Button label="Kembali" onClick={() => navigate(-1)} />
 			</div>
 		</Fade>
 	);
