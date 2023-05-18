@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Background } from './components/atoms';
 import { ButtonBacksound } from './components/molecules';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
@@ -45,7 +45,11 @@ function App() {
 			{!showSplashScreen && (
 				<div className="absolute flex items-start gap-4 top-5 left-8">
 					{!IS_AT_HOME && <ButtonGoHome />}
-					{IS_AT_HOME && <Button label="Petunjuk Penggunaan" onClick={() => navigate('/usage-instruction')} />}
+					{IS_AT_HOME && (
+						<Button icon={require('@/images/symbol/buku.png')} onClick={() => navigate('/usage-instruction')}>
+							Petunjuk Penggunaan
+						</Button>
+					)}
 				</div>
 			)}
 
