@@ -1,0 +1,4 @@
+export const READING_MODE = {
+	READ_ALOUD: 'READ_ALOUD',
+	READ_BY_MYSELF: 'READ_BY_MYSELF',
+};

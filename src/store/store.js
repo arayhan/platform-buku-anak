@@ -1,12 +1,17 @@
+import { READING_MODE } from '@/utils/constants';
 import create from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { persist, devtools } from 'zustand/middleware';
 
 const states = (set, get) => ({
+	readingMode: READING_MODE.READ_ALOUD,
 	showSplashScreen: true,
 
+	setReadingMode: (mode) => {
+		set({ readingMode: mode });
+	},
 	setShowSplashScreen: (show) => {
 		set({ showSplashScreen: show });
 	},
 });
 
-export const useAppStore = create(devtools(states, { name: 'app-store', getStorage: () => localStorage }));
+export const useAppStore = create(devtools(persist(states, { name: 'app-store', getStorage: () => localStorage })));

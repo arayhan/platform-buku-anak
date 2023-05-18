@@ -1,17 +1,23 @@
 import { ButtonIcon } from '@/components/atoms';
 import { VoiceOver } from '@/components/molecules/VoiceOver';
 import { BOOK_DATA } from '@/data/bookData';
+import { useAppStore } from '@/store/store';
 import { Fade } from '@/transitions/Fade/Fade';
 import { playSound } from '@/utils/helpers';
+import { READING_MODE } from '@/utils/constants';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { useNavigate } from 'react-router-dom';
 
-export const Book = ({ isReadAloud = true }) => {
+export const Book = () => {
 	const bookRef = useRef(null);
 	const navigate = useNavigate();
+
+	const { readingMode } = useAppStore();
+
+	const IS_READ_ALOUD = readingMode === READING_MODE.READ_ALOUD;
 
 	const [time, setTime] = useState(0);
 	const [maxTime, setMaxTime] = useState(0);
@@ -67,7 +73,7 @@ export const Book = ({ isReadAloud = true }) => {
 
 	return (
 		<Fade>
-			{isReadAloud && <VoiceOver isPause={isPause} onEnded={handleVoiceOverEnded} page={page} />}
+			{IS_READ_ALOUD && <VoiceOver isPause={isPause} onEnded={handleVoiceOverEnded} page={page} />}
 
 			<div className="flex flex-col justify-center h-screen max-w-screen-lg mx-auto -mt-12">
 				<HTMLFlipBook
@@ -97,7 +103,7 @@ export const Book = ({ isReadAloud = true }) => {
 					onClick={handleGoToPrevPage}
 					disabled={page === 0}
 				/>
-				{isReadAloud && (
+				{IS_READ_ALOUD && (
 					<ButtonIcon
 						icon={require(`@/images/symbol/${isPause ? 'play' : 'pause'}.png`)}
 						className={clsx('w-12')}

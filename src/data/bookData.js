@@ -65,7 +65,7 @@ export const BOOK_DATA = {
 			number: 6,
 			image: require('@/images/story-plain/6-min.jpg'),
 			audio: require('@/audios/voice-over/Hal 6 (enhanced).wav'),
-			text: 'Hei, lihat! Bima memegang pensil biru, sama seperti pensilnya. Apakah itu pensil Habil? Habil mendekati Bima. “Bima, kembalikan pensilku!” ucap Habil. “Ini pensilku.” kata Bima Habil yang tidak percaya, meminta Bima menunjukkan pensilnya.',
+			text: 'Hei, lihat! Bima memegang pensil biru, sama seperti pensilnya. Apakah itu pensil Habil? Habil mendekati Bima. “Bima, kembalikan pensilku!” ucap Habil. “Ini pensilku.” kata Bima. Habil yang tidak percaya, meminta Bima menunjukkan pensilnya.',
 		},
 		{
 			number: 7,

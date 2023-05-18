@@ -12,14 +12,11 @@ import { Button } from './components/atoms/Button';
 import { UsageInstruction } from './pages/UsageInstruction/UsageInstruction';
 import { Author } from './pages/Author/Author';
 import { ButtonFullScreen } from './components/molecules/ButtonFullScreen';
-import { useAppStore } from './store/store';
 import { SplashScreen } from './pages/SplashScreen/SplashScreen';
 
 function App() {
 	const navigate = useNavigate();
 	const location = useLocation();
-
-	const { showSplashScreen } = useAppStore();
 
 	const { pathname } = location;
 
