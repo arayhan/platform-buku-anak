@@ -46,7 +46,7 @@ function App() {
 				<div className="absolute flex items-start gap-4 top-5 left-8">
 					{!IS_AT_HOME && <ButtonGoHome />}
 					{IS_AT_HOME && (
-						<Button icon={require('@/images/symbol/buku.png')} onClick={() => navigate('/usage-instruction')}>
+						<Button icon={require('@/images/symbol/buku.png')} size="sm" onClick={() => navigate('/usage-instruction')}>
 							Petunjuk Penggunaan
 						</Button>
 					)}
