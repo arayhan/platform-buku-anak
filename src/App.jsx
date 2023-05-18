@@ -14,6 +14,7 @@ import { Author } from './pages/Author/Author';
 import { ButtonFullScreen } from './components/molecules/ButtonFullScreen';
 import { SplashScreen } from './pages/SplashScreen/SplashScreen';
 import { FinishMenu } from './pages/FinishMenu/FinishMenu';
+import { Glossary } from './pages/Glossary/Glossary';
 
 function App() {
 	const navigate = useNavigate();
@@ -36,11 +37,12 @@ function App() {
 				<AnimatePresence mode="wait">
 					<Routes location={location} key={pathname}>
 						<Route path="/" exact element={<MainMenu />} />
+						<Route path="/splash" element={<SplashScreen />} />
 						<Route path="/usage-instruction" element={<UsageInstruction />} />
 						<Route path="/author" element={<Author />} />
 						<Route path="/book" element={<Book />} />
-						<Route path="/splash" element={<SplashScreen />} />
 						<Route path="/book/finish" element={<FinishMenu />} />
+						<Route path="/glossary" element={<Glossary />} />
 					</Routes>
 				</AnimatePresence>
 			</div>
