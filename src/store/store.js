@@ -5,12 +5,16 @@ import { persist, devtools } from 'zustand/middleware';
 const states = (set, get) => ({
 	readingMode: READING_MODE.READ_ALOUD,
 	showSplashScreen: true,
+	quizAnswers: [],
 
 	setReadingMode: (mode) => {
 		set({ readingMode: mode });
 	},
 	setShowSplashScreen: (show) => {
 		set({ showSplashScreen: show });
+	},
+	setQuizAnswers: (answers) => {
+		set({ quizAnswers: answers });
 	},
 });
 

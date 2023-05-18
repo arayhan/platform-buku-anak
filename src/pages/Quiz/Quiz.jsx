@@ -1,38 +1,77 @@
 import { Button } from '@/components/atoms/Button';
 import { SpeechToText } from '@/components/molecules/SpeechToText';
 import { QUIZ_DATA } from '@/data/quizData';
+import { useAppStore } from '@/store/store';
 import { Fade } from '@/transitions/Fade/Fade';
 import { QUIZ_TYPE } from '@/utils/constants';
+import { toLowerCaseAndremoveSymbol } from '@/utils/helpers';
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSpeechRecognition } from 'react-speech-recognition';
 
 export const Quiz = () => {
+	const navigate = useNavigate();
+	const { transcript, resetTranscript } = useSpeechRecognition();
+
+	const { quizAnswers, setQuizAnswers } = useAppStore();
+
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [currentAnswer, setCurrentAnswer] = useState(null);
-	const [answers, setAnswers] = useState([]);
 	const [errorMessage, setErrorMessage] = useState(null);
 
 	const currentQuiz = QUIZ_DATA[currentIndex];
 
 	const handleSetAnswer = () => {
-		if (currentAnswer) {
-			answers[currentIndex] = currentAnswer;
-			setAnswers(answers);
-			setCurrentAnswer(null);
-			setCurrentIndex(currentIndex + 1);
-			setErrorMessage(null);
+		if (currentIndex + 1 >= QUIZ_DATA.length) {
+			navigate('/quiz/result');
 		} else {
-			if (currentQuiz.type === QUIZ_TYPE.OPTION) setErrorMessage('Pilih salah satu jawaban terlebih dahulu!');
-			else if (currentQuiz.type === QUIZ_TYPE.INPUT_SOUND) {
-				setErrorMessage('Harap memasukkan rekaman suara terlebih dahulu!');
+			if (currentAnswer || transcript) {
+				let score = 0;
+				const answer = currentQuiz.type === QUIZ_TYPE.OPTION ? currentAnswer : transcript || currentAnswer;
+
+				if (currentQuiz.type === QUIZ_TYPE.OPTION && currentAnswer?.isCorrect) score = 100;
+				else if (currentQuiz.type === QUIZ_TYPE.INPUT_SOUND) {
+					toLowerCaseAndremoveSymbol(answer)
+						.split(' ')
+						.forEach((word) => {
+							if (toLowerCaseAndremoveSymbol(currentQuiz.text).split(' ').includes(word))
+								score +=
+									100 /
+									toLowerCaseAndremoveSymbol(currentQuiz.text)
+										.replace(/[^a-zA-Z ]/g, '')
+										.split(' ').length;
+						});
+				}
+
+				quizAnswers[currentIndex] = {
+					type: currentQuiz.type,
+					answer,
+					score,
+				};
+				setQuizAnswers(quizAnswers);
+
+				resetTranscript();
+				setCurrentAnswer(quizAnswers[currentIndex + 1]?.answer || null);
+				setCurrentIndex(currentIndex + 1);
+				setErrorMessage(null);
+			} else {
+				if (currentQuiz.type === QUIZ_TYPE.OPTION) setErrorMessage('Pilih salah satu jawaban terlebih dahulu!');
+				else if (currentQuiz.type === QUIZ_TYPE.INPUT_SOUND) {
+					setErrorMessage('Harap memasukkan rekaman suara terlebih dahulu!');
+				}
 			}
 		}
 	};
 
 	const handlePrevious = () => {
-		setCurrentAnswer(answers[currentIndex - 1]);
+		setCurrentAnswer(quizAnswers[currentIndex - 1].answer);
 		setCurrentIndex(currentIndex - 1);
 	};
+
+	useEffect(() => {
+		setCurrentIndex(quizAnswers.length - 1);
+	}, [quizAnswers]);
 
 	return (
 		<Fade>
@@ -53,9 +92,8 @@ export const Quiz = () => {
 						<div className="flex flex-col items-center justify-center gap-4">
 							<SpeechToText
 								request={currentQuiz.text.toLowerCase().replace(/[^a-zA-Z ]/g, '')}
-								onChangeTranscript={(transcript) => setAnswers(transcript)}
+								answer={currentAnswer}
 							/>
-							{currentAnswer && <audio src={currentAnswer} controls autoPlay />}
 						</div>
 					)}
 					{currentQuiz.type === QUIZ_TYPE.OPTION && (
@@ -93,7 +131,9 @@ export const Quiz = () => {
 							})}
 						</div>
 					)}
-					{errorMessage && !currentAnswer && <div className="text-center text-red-500">{errorMessage}</div>}
+					{errorMessage && !transcript && !currentAnswer && (
+						<div className="text-center text-red-500">{errorMessage}</div>
+					)}
 				</div>
 				<hr />
 				<div className="flex items-center justify-center gap-6">
