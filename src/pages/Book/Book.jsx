@@ -103,6 +103,9 @@ export const Book = () => {
 				<div className="relative mt-4 text-xs text-center z-11 md:text-base md:-mt-5 lg:-mt-16 lg:text-lg">
 					{pageData?.text}
 				</div>
+				<div className="mt-3 text-xs italic text-center opacity-50">
+					Halaman {page + 1} dari {totalPage}
+				</div>
 			</div>
 
 			<div className="flex items-center justify-center gap-16 p-6">
