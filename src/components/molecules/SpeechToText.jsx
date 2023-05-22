@@ -19,7 +19,7 @@ export const SpeechToText = ({ request, answer }) => {
 
 	return (
 		<div className="flex flex-col items-center justify-center w-full space-y-3">
-			<div className="text-yellow-500">
+			<div className="text-center text-yellow-500">
 				{listening ? 'Mic menyala, bicara sekarang' : 'Mic mati, tekan tombol di bawah untuk bicara'}
 			</div>
 			<Button
