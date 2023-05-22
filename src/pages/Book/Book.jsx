@@ -36,8 +36,12 @@ export const Book = () => {
 	};
 
 	const handleGoToNextPage = () => {
-		bookRef.current.pageFlip().flipNext();
-		playSound(require('@/audios/book_page_turn.mp3'));
+		if (page >= bookRef.current.pageFlip().pages.pages.length - 1) {
+			navigate('/book/finish');
+		} else {
+			bookRef.current.pageFlip().flipNext();
+			playSound(require('@/audios/book_page_turn.mp3'));
+		}
 	};
 
 	const handleVoiceOverEnded = () => {
@@ -75,16 +79,19 @@ export const Book = () => {
 		<Fade>
 			{IS_READ_ALOUD && <VoiceOver isPause={isPause} onEnded={handleVoiceOverEnded} page={page} />}
 
-			<div className="flex flex-col justify-center h-screen max-w-screen-lg mx-auto -mt-12">
+			<div className="flex flex-col justify-center h-[93vh] max-w-screen-lg mx-auto -mt-12">
 				<HTMLFlipBook
 					ref={bookRef}
 					autoSize
-					width={656.5}
-					height={328.25}
+					width={605.5}
+					height={302.25}
+					maxWidth={656.5}
+					maxHeight={328.25}
 					onFlip={handleChangePage}
 					flippingTime={500}
 					showPageCorners
 					mobileScrollSupport
+					// className="bg-red-500 w-full max-w-[80vw]"
 				>
 					{BOOK_DATA.pages?.map((page) => (
 						<div key={page.number} className="w-[80vw] h-full overflow-hidden rounded-lg shadow-xl">
@@ -93,10 +100,12 @@ export const Book = () => {
 					))}
 				</HTMLFlipBook>
 
-				<div className="mt-4 text-sm text-center md:-mt-5 lg:-mt-16 lg:text-lg">{pageData?.text}</div>
+				<div className="relative mt-4 text-xs text-center z-11 md:text-base md:-mt-5 lg:-mt-16 lg:text-lg">
+					{pageData?.text}
+				</div>
 			</div>
 
-			<div className="absolute flex items-center justify-center gap-16 transform -translate-x-1/2 md:gap-24 bottom-8 left-1/2">
+			<div className="flex items-center justify-center gap-16 p-6">
 				<ButtonIcon
 					icon={require('@/images/symbol/previous left.png')}
 					className={clsx('w-12')}
@@ -114,7 +123,7 @@ export const Book = () => {
 					icon={require('@/images/symbol/previous right.png')}
 					className={clsx('w-12')}
 					onClick={handleGoToNextPage}
-					disabled={page === totalPage - 1}
+					disabled={IS_READ_ALOUD && page === totalPage - 1}
 				/>
 			</div>
 		</Fade>
