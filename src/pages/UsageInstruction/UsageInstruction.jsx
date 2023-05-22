@@ -29,7 +29,7 @@ export const UsageInstruction = () => {
 			<div
 				className={clsx(
 					'w-full px-8 sm:px-12 md:px-20 py-8 md:py-16 mt-24 lg:mt-8 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg',
-					showSplashScreen && 'max-h-[79vh]',
+					showSplashScreen && 'max-h-[75vh]',
 					!showSplashScreen && 'max-h-[85vh]'
 				)}
 			>
@@ -85,7 +85,7 @@ export const UsageInstruction = () => {
 				</div>
 			</div>
 			{showSplashScreen && (
-				<div className="flex justify-between mb-6">
+				<div className="flex justify-between mb-10">
 					<div className="flex flex-col items-start justify-center gap-1">
 						<div className="flex items-center">
 							<input
