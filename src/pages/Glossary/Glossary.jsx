@@ -8,7 +8,7 @@ export const Glossary = () => {
 
 	return (
 		<Fade>
-			<div className="w-full max-h-[92vh] px-4 md:px-10 lg:px-20 py-16 mt-16 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
+			<div className="w-full max-h-[92vh] px-4 md:px-10 lg:px-20 py-16 mt-28 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
 				<div>
 					<h1 className="text-xl font-bold text-center">Glossary</h1>
 				</div>
