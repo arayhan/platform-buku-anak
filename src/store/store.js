@@ -16,6 +16,9 @@ const states = (set, get) => ({
 	setQuizAnswers: (answers) => {
 		set({ quizAnswers: answers });
 	},
+	resetQuizAnswers: () => {
+		set({ quizAnswers: [] });
+	},
 });
 
 export const useAppStore = create(devtools(persist(states, { name: 'app-store', getStorage: () => localStorage })));

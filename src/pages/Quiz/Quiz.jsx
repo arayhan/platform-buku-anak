@@ -42,9 +42,9 @@ export const Quiz = () => {
 			}
 
 			quizAnswers[currentIndex] = {
-				type: currentQuiz?.type,
+				quiz: currentQuiz,
 				answer,
-				score,
+				score: score.toFixed(),
 			};
 			setQuizAnswers(quizAnswers);
 
@@ -70,7 +70,7 @@ export const Quiz = () => {
 	};
 
 	useEffect(() => {
-		if (quizAnswers.length) setCurrentIndex(quizAnswers.length);
+		if (quizAnswers.length) setCurrentIndex(quizAnswers.length - 1);
 	}, [quizAnswers]);
 
 	return (
@@ -143,6 +143,11 @@ export const Quiz = () => {
 					<Button label="Jawab" onClick={() => handleSetAnswer()} />
 				</div>
 			</div>
+			{currentIndex === 0 && (
+				<div className="flex items-center justify-center">
+					<Button label="Kembali" onClick={() => navigate('/book/finish')} />
+				</div>
+			)}
 		</Fade>
 	);
 };
