@@ -40,7 +40,7 @@ export const SpeechToText = ({ request, answer }) => {
 								<div>Transcript :</div>
 								<div className="w-full p-3 border-2 border-gray-200 rounded-md">
 									{transcript
-										.toLowerCase()
+										?.toLowerCase()
 										.split(' ')
 										.map((word, index) => {
 											const isCorrect = request.split(' ').includes(word);
@@ -61,7 +61,7 @@ export const SpeechToText = ({ request, answer }) => {
 							<div>Jawaban Sebelumnya :</div>
 							<div className="w-full p-3 border-2 border-gray-200 rounded-md">
 								{answer
-									.toLowerCase()
+									?.toLowerCase()
 									.split(' ')
 									.map((word, index) => {
 										const isCorrect = request.split(' ').includes(word);

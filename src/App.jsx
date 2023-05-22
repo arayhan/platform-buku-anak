@@ -17,6 +17,7 @@ import { FinishMenu } from './pages/FinishMenu/FinishMenu';
 import { Glossary } from './pages/Glossary/Glossary';
 import { useAppStore } from './store/store';
 import { Quiz } from './pages/Quiz/Quiz';
+import { QuizOverview } from './pages/Quiz/QuizOverview';
 
 function App() {
 	const navigate = useNavigate();
@@ -47,6 +48,7 @@ function App() {
 						<Route path="/book/finish" element={<FinishMenu />} />
 						<Route path="/glossary" element={<Glossary />} />
 						<Route path="/quiz" element={<Quiz />} />/
+						<Route path="/quiz/overview" element={<QuizOverview />} />/
 					</Routes>
 				</AnimatePresence>
 			</div>

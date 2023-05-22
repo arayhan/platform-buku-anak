@@ -23,43 +23,43 @@ export const Quiz = () => {
 	const currentQuiz = QUIZ_DATA[currentIndex];
 
 	const handleSetAnswer = () => {
-		if (currentIndex + 1 >= QUIZ_DATA.length) {
-			navigate('/quiz/result');
-		} else {
-			if (currentAnswer || transcript) {
-				let score = 0;
-				const answer = currentQuiz?.type === QUIZ_TYPE.OPTION ? currentAnswer : transcript || currentAnswer;
+		if (currentAnswer || transcript) {
+			let score = 0;
+			const answer = currentQuiz?.type === QUIZ_TYPE.OPTION ? currentAnswer : transcript || currentAnswer;
 
-				if (currentQuiz?.type === QUIZ_TYPE.OPTION && currentAnswer?.isCorrect) score = 100;
-				else if (currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND) {
-					toLowerCaseAndremoveSymbol(answer)
-						.split(' ')
-						.forEach((word) => {
-							if (toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').includes(word))
-								score +=
-									100 /
-									toLowerCaseAndremoveSymbol(currentQuiz?.text)
-										.replace(/[^a-zA-Z ]/g, '')
-										.split(' ').length;
-						});
-				}
+			if (currentQuiz?.type === QUIZ_TYPE.OPTION && currentAnswer?.isCorrect) score = 100;
+			else if (currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND) {
+				toLowerCaseAndremoveSymbol(answer)
+					.split(' ')
+					.forEach((word) => {
+						if (toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').includes(word))
+							score +=
+								100 /
+								toLowerCaseAndremoveSymbol(currentQuiz?.text)
+									.replace(/[^a-zA-Z ]/g, '')
+									.split(' ').length;
+					});
+			}
 
-				quizAnswers[currentIndex] = {
-					type: currentQuiz?.type,
-					answer,
-					score,
-				};
-				setQuizAnswers(quizAnswers);
+			quizAnswers[currentIndex] = {
+				type: currentQuiz?.type,
+				answer,
+				score,
+			};
+			setQuizAnswers(quizAnswers);
 
+			if (currentIndex + 1 >= QUIZ_DATA.length) {
+				navigate('/quiz/overview');
+			} else {
 				resetTranscript();
 				setCurrentAnswer(quizAnswers[currentIndex + 1]?.answer || null);
 				setCurrentIndex(currentIndex + 1);
 				setErrorMessage(null);
-			} else {
-				if (currentQuiz?.type === QUIZ_TYPE.OPTION) setErrorMessage('Pilih salah satu jawaban terlebih dahulu!');
-				else if (currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND) {
-					setErrorMessage('Harap memasukkan rekaman suara terlebih dahulu!');
-				}
+			}
+		} else {
+			if (currentQuiz?.type === QUIZ_TYPE.OPTION) setErrorMessage('Pilih salah satu jawaban terlebih dahulu!');
+			else if (currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND) {
+				setErrorMessage('Harap memasukkan rekaman suara terlebih dahulu!');
 			}
 		}
 	};
@@ -70,9 +70,7 @@ export const Quiz = () => {
 	};
 
 	useEffect(() => {
-		if (quizAnswers.length) {
-			setCurrentIndex(quizAnswers.length - 1);
-		}
+		if (quizAnswers.length) setCurrentIndex(quizAnswers.length);
 	}, [quizAnswers]);
 
 	return (
