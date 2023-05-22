@@ -18,7 +18,7 @@ export const QuizOverview = () => {
 		if (QUIZ_DATA.length !== quizAnswers.length) {
 			navigate('/quiz');
 		}
-	}, [navigate, quizAnswers]);
+	}, []);
 
 	return (
 		<Fade>
