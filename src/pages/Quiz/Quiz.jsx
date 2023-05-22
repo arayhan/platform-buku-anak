@@ -28,24 +28,24 @@ export const Quiz = () => {
 		} else {
 			if (currentAnswer || transcript) {
 				let score = 0;
-				const answer = currentQuiz.type === QUIZ_TYPE.OPTION ? currentAnswer : transcript || currentAnswer;
+				const answer = currentQuiz?.type === QUIZ_TYPE.OPTION ? currentAnswer : transcript || currentAnswer;
 
-				if (currentQuiz.type === QUIZ_TYPE.OPTION && currentAnswer?.isCorrect) score = 100;
-				else if (currentQuiz.type === QUIZ_TYPE.INPUT_SOUND) {
+				if (currentQuiz?.type === QUIZ_TYPE.OPTION && currentAnswer?.isCorrect) score = 100;
+				else if (currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND) {
 					toLowerCaseAndremoveSymbol(answer)
 						.split(' ')
 						.forEach((word) => {
-							if (toLowerCaseAndremoveSymbol(currentQuiz.text).split(' ').includes(word))
+							if (toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').includes(word))
 								score +=
 									100 /
-									toLowerCaseAndremoveSymbol(currentQuiz.text)
+									toLowerCaseAndremoveSymbol(currentQuiz?.text)
 										.replace(/[^a-zA-Z ]/g, '')
 										.split(' ').length;
 						});
 				}
 
 				quizAnswers[currentIndex] = {
-					type: currentQuiz.type,
+					type: currentQuiz?.type,
 					answer,
 					score,
 				};
@@ -56,8 +56,8 @@ export const Quiz = () => {
 				setCurrentIndex(currentIndex + 1);
 				setErrorMessage(null);
 			} else {
-				if (currentQuiz.type === QUIZ_TYPE.OPTION) setErrorMessage('Pilih salah satu jawaban terlebih dahulu!');
-				else if (currentQuiz.type === QUIZ_TYPE.INPUT_SOUND) {
+				if (currentQuiz?.type === QUIZ_TYPE.OPTION) setErrorMessage('Pilih salah satu jawaban terlebih dahulu!');
+				else if (currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND) {
 					setErrorMessage('Harap memasukkan rekaman suara terlebih dahulu!');
 				}
 			}
@@ -70,7 +70,9 @@ export const Quiz = () => {
 	};
 
 	useEffect(() => {
-		setCurrentIndex(quizAnswers.length - 1);
+		if (quizAnswers.length) {
+			setCurrentIndex(quizAnswers.length - 1);
+		}
 	}, [quizAnswers]);
 
 	return (
@@ -85,20 +87,22 @@ export const Quiz = () => {
 						<div>
 							Pertanyaan {currentIndex + 1} dari {QUIZ_DATA.length}
 						</div>
-						<h1 className="text-xl font-semibold">{currentQuiz.question}</h1>
-						{currentQuiz.type === QUIZ_TYPE.INPUT_SOUND && <h1 className="text-xl font-bold">"{currentQuiz.text}"</h1>}
+						<h1 className="text-xl font-semibold">{currentQuiz?.question}</h1>
+						{currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND && (
+							<h1 className="text-xl font-bold">"{currentQuiz?.text}"</h1>
+						)}
 					</div>
-					{currentQuiz.type === QUIZ_TYPE.INPUT_SOUND && (
+					{currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND && (
 						<div className="flex flex-col items-center justify-center gap-4">
 							<SpeechToText
-								request={currentQuiz.text.toLowerCase().replace(/[^a-zA-Z ]/g, '')}
+								request={currentQuiz?.text.toLowerCase().replace(/[^a-zA-Z ]/g, '')}
 								answer={currentAnswer}
 							/>
 						</div>
 					)}
-					{currentQuiz.type === QUIZ_TYPE.OPTION && (
+					{currentQuiz?.type === QUIZ_TYPE.OPTION && (
 						<div className="grid gap-3">
-							{currentQuiz.options.map((option, index) => {
+							{currentQuiz?.options.map((option, index) => {
 								const checked = currentAnswer?.id === option.id;
 								return (
 									<label
