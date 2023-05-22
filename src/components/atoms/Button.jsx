@@ -9,9 +9,9 @@ export const Button = ({ icon, label, size, children, className, ...props }) => 
 				className={clsx([
 					'flex gap-4 text-center justify-center items-center text-white transition-all origin-center transform cursor-pointer bg-app-carmine-pink active:scale-100 hover:scale-105 rounded-md',
 					size === 'sm' && 'px-3 py-2 text-sm',
-					size === 'md' && 'px-5 py-2 text-base',
-					size === 'lg' && 'px-8 py-3 text-lg',
-					size === 'xl' && 'px-8 py-4 text-xl',
+					size === 'md' && 'px-5 py-2 text-sm md:text-base',
+					size === 'lg' && 'px-6 py-3 lg:px-8 lg:py-3 text-sm md:text-base lg:text-lg',
+					size === 'xl' && 'px-6 py-3 lg:px-8 lg:py-4 text-sm md:text-base lg:text-xl',
 					className,
 				])}
 				{...props}
