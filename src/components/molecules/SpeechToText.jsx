@@ -19,9 +19,6 @@ export const SpeechToText = ({ request, answer }) => {
 
 	return (
 		<div className="flex flex-col items-center justify-center w-full space-y-3">
-			<div className="text-center text-yellow-500">
-				{listening ? 'Mic menyala, bicara sekarang' : 'Mic mati, tekan tombol di bawah untuk bicara'}
-			</div>
 			<Button
 				className="bg-app-blue-sapphire-500"
 				onTouchStart={startListening}
@@ -32,6 +29,11 @@ export const SpeechToText = ({ request, answer }) => {
 				<TbMicrophone className="text-white" size={20} color="#fff" />
 				<div>Tahan untuk bicara</div>
 			</Button>
+
+			<div className="text-center text-yellow-500">
+				{listening ? 'Mic menyala, bicara sekarang' : 'Mic mati, tekan tombol di atas untuk bicara'}
+			</div>
+
 			{(transcript || answer) && (
 				<>
 					<div className="flex flex-col items-center w-full space-y-3 text-center">
