@@ -8,14 +8,15 @@ export const Author = () => {
 
 	return (
 		<Fade>
-			<div className="w-full max-h-[80vh] px-20 py-14 my-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
+			<div className="w-full max-h-[80vh] px-6 lg:px-20 py-14 my-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
 				<div>
-					<h1 className="text-xl font-bold text-center">Author</h1>
+					<h1 className="text-lg font-bold text-center lg:text-xl">Author</h1>
 				</div>
-				<div className="grid grid-cols-2 gap-6">
-					<div className="flex col-span-2 gap-6 leading-relaxed">
-						<div className="space-y-3 w-80">
-							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover rounded-xl" />
+				<hr />
+				<div className="grid gap-12">
+					<div className="flex flex-col gap-6 text-sm leading-relaxed text-center lg:text-base lg:text-left lg:col-span-2 lg:flex-row">
+						<div className="flex flex-col items-center space-y-3 lg:items-start">
+							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover w-40 rounded-xl lg:w-60" />
 							<div>
 								<div className="font-semibold">Maika Lestari</div>
 								<div>Penulis</div>
@@ -31,9 +32,9 @@ export const Author = () => {
 						</div>
 					</div>
 
-					<div className="flex gap-6 leading-relaxed">
-						<div className="space-y-3 w-80">
-							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover rounded-xl" />
+					<div className="flex flex-col gap-6 text-sm leading-relaxed text-center lg:text-base lg:text-left lg:col-span-2 lg:flex-row">
+						<div className="flex flex-col items-center space-y-3 lg:items-start">
+							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover w-40 rounded-xl lg:w-60" />
 							<div>
 								<div className="font-semibold">Satujua Creative</div>
 								<div>Ilustrator</div>
@@ -55,9 +56,9 @@ export const Author = () => {
 						</div>
 					</div>
 
-					<div className="flex gap-6 leading-relaxed">
-						<div className="space-y-3 w-80">
-							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover rounded-xl" />
+					<div className="flex flex-col gap-6 text-sm leading-relaxed text-center lg:text-base lg:text-left lg:col-span-2 lg:flex-row">
+						<div className="flex flex-col items-center space-y-3 lg:items-start">
+							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover w-40 rounded-xl lg:w-60" />
 							<div>
 								<div className="font-semibold">Ahmed Rayhan Primadedas</div>
 								<div>Programmer</div>
