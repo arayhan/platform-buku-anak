@@ -28,9 +28,9 @@ export const UsageInstruction = () => {
 		<Fade className="flex flex-col justify-between h-screen">
 			<div
 				className={clsx(
-					'w-full px-8 sm:px-12 md:px-20 py-8 md:py-16 mt-20 lg:mt-8 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg',
+					'w-full px-8 sm:px-12 md:px-20 py-8 md:py-16 mt-24 lg:mt-8 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg',
 					showSplashScreen && 'max-h-[79vh]',
-					!showSplashScreen && 'max-h-[92vh]'
+					!showSplashScreen && 'max-h-[85vh]'
 				)}
 			>
 				<div>
