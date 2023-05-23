@@ -10,7 +10,7 @@ export const Author = () => {
 		<Fade>
 			<div className="w-full max-h-[80vh] px-6 lg:px-20 py-12 mt-16 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
 				<div>
-					<h1 className="text-lg font-bold text-center lg:text-xl">Author</h1>
+					<h1 className="text-lg font-bold text-center lg:text-xl">Kreator</h1>
 				</div>
 				<hr />
 				<div className="grid gap-12">

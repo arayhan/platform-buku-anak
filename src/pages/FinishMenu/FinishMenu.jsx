@@ -15,7 +15,7 @@ export const FinishMenu = () => {
 					<hr />
 					<div className="flex flex-col items-center gap-2 mt-10 md:gap-8 md:flex-row md:mt-5">
 						<Button label="Glosarium" className="w-56" size="xl" onClick={() => navigate('/glossary')} />
-						<Button label="Author" className="w-56" size="xl" onClick={() => navigate('/author')} />
+						<Button label="Tentang Kreator" className="w-56" size="xl" onClick={() => navigate('/author')} />
 					</div>
 				</div>
 			</div>

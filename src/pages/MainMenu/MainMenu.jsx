@@ -32,7 +32,7 @@ export const MainMenu = () => {
 						onClick={() => handleOpenBook(READING_MODE.READ_ALOUD)}
 					/>
 					<Button
-						label="Bacakan Sendiri"
+						label="Baca Sendiri"
 						className="w-full md:w-56"
 						size="xl"
 						onClick={() => handleOpenBook(READING_MODE.READ_BY_MYSELF)}

@@ -19,8 +19,8 @@ export const UsageInstruction = () => {
 			setShowSplashScreen(false);
 			navigate('/');
 		} else {
-			notify.show('Harap centang tombol di bawah untuk melanjutkan', 'warning', 3000);
-			setErrorMessage('Harap centang petunjuk penggunaan ini telah dipahami');
+			notify.show('Harap centang tombol di bawah untuk melanjutkan.', 'warning', 3000);
+			setErrorMessage('Harap centang apabila Anda telah memhami petunjuk penggunaan ini.');
 		}
 	};
 
@@ -37,7 +37,7 @@ export const UsageInstruction = () => {
 					<h1 className="text-xl font-bold text-center">PETUNJUK PENGGUNAAN BUKU DIGITAL</h1>
 				</div>
 				<div className="space-y-6">
-					<div className="space-y-3 leading-relaxed">
+					<div className="space-y-3 leading-relaxed text-justify">
 						<h2 className="font-semibold">Bagi Orang Tua dan Pendidik</h2>
 						<p>
 							Buku digital “Pensil Baru Habil” adalah bahan bacaan pendukung dalam pembelajaran membaca nyaring.
@@ -60,9 +60,9 @@ export const UsageInstruction = () => {
 						</p>
 					</div>
 
-					<div className="space-y-3">
+					<div className="space-y-3 text-justify">
 						<h2 className="font-semibold">Bagi Anak</h2>
-						<ul className="space-y-2 list-disc list-inside">
+						<ul className="ml-6 space-y-2 list-disc list-outside">
 							<li>Mulai membaca dengan menekan tombol “start”</li>
 							<li>
 								Tampilan mode baca akan muncul. Kamu dapat memilih ingin membaca sendiri atau mendengarkan bacaan dari
@@ -70,7 +70,7 @@ export const UsageInstruction = () => {
 							</li>
 							<li className="space-y-2">
 								<span>Tampilan buku akan terbuka dan terdapat tombol fungsi sebagai berikut:</span>
-								<ol className="ml-8 space-y-1 list-decimal list-inside">
+								<ol className="ml-6 space-y-1 list-decimal list-outside">
 									<li className="list-item">Beranda – tombol untuk kembali pada tampilan awal</li>
 									<li className="list-item">Suara – tombol untuk mengaktifkan atau menonaktifkan musik latar</li>
 									<li className="list-item">Previous – tombol untuk kembali ke halaman buku sebelumnya</li>

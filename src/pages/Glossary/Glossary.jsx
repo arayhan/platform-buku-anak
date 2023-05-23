@@ -10,7 +10,7 @@ export const Glossary = () => {
 		<Fade>
 			<div className="w-full max-h-[92vh] px-4 md:px-10 lg:px-20 py-16 mt-28 mb-8 space-y-10 overflow-y-scroll bg-white bg-opacity-50 rounded-lg shadow-lg">
 				<div>
-					<h1 className="text-xl font-bold text-center">Glossary</h1>
+					<h1 className="text-xl font-bold text-center">Glosarium</h1>
 				</div>
 				<div>
 					<table id="glossary" className="text-sm text-left md:text-base lg:text-lg">
@@ -42,7 +42,7 @@ export const Glossary = () => {
 						<tr>
 							<th>Menuduh</th>
 							<td>:</td>
-							<td>Perilaku menunjuk dan mengatakan bahwa seseorang berbuat kurang baik.</td>
+							<td>perilaku menunjuk dan mengatakan bahwa seseorang berbuat kurang baik.</td>
 						</tr>
 					</table>
 				</div>

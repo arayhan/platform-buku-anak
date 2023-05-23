@@ -108,7 +108,7 @@ export const Book = () => {
 				</div>
 			</div>
 
-			<div className="flex items-center justify-center gap-16 p-4 transform -translate-y-full">
+			<div className="flex items-center justify-between gap-16 p-4 transform">
 				<ButtonIcon
 					icon={require('@/images/symbol/previous left.png')}
 					className={clsx('w-12')}
