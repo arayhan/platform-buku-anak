@@ -10,6 +10,7 @@ import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { useNavigate } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip';
 
 export const Book = () => {
 	const bookRef = useRef(null);
@@ -23,7 +24,7 @@ export const Book = () => {
 	const [maxTime, setMaxTime] = useState(0);
 	const [isPause, setIsPause] = useState(true);
 	const [page, setPage] = useState(0);
-	const [totalPage, setTotalPage] = useState(0);
+	const [totalPage, setTotalPage] = useState(BOOK_DATA.pages.length);
 	const [pageData, setPageData] = useState(null);
 
 	const handleChangePage = (element) => {
@@ -110,24 +111,38 @@ export const Book = () => {
 
 			<div className="flex items-center justify-between gap-16 p-4 transform">
 				<ButtonIcon
+					id="buttonPrev"
 					icon={require('@/images/symbol/previous left.png')}
 					className={clsx('w-12')}
 					onClick={handleGoToPrevPage}
 					disabled={page === 0}
 				/>
+				<Tooltip anchorSelect="#buttonPrev" place="top">
+					Sebelumnya
+				</Tooltip>
 				{IS_READ_ALOUD && (
-					<ButtonIcon
-						icon={require(`@/images/symbol/${isPause ? 'play' : 'pause'}.png`)}
-						className={clsx('w-12')}
-						onClick={() => setIsPause((isPause) => !isPause)}
-					/>
+					<>
+						<ButtonIcon
+							id="buttonPlayPause"
+							icon={require(`@/images/symbol/${isPause ? 'play' : 'pause'}.png`)}
+							className={clsx('w-12')}
+							onClick={() => setIsPause((isPause) => !isPause)}
+						/>
+						<Tooltip anchorSelect="#buttonPlayPause" place="top">
+							{isPause ? 'Putar' : 'Jeda'}
+						</Tooltip>
+					</>
 				)}
 				<ButtonIcon
+					id="buttonNext"
 					icon={require('@/images/symbol/previous right.png')}
 					className={clsx('w-12')}
 					onClick={handleGoToNextPage}
 					disabled={IS_READ_ALOUD && page === totalPage - 1}
 				/>
+				<Tooltip anchorSelect="#buttonNext" place="top">
+					Berikutnya
+				</Tooltip>
 			</div>
 		</Fade>
 	);

@@ -32,7 +32,7 @@ export const ButtonFullScreen = () => {
 				<TbCapture />
 			</ButtonIcon>
 			<Tooltip anchorSelect="#buttonFullScreen" place="top">
-				Fullscreen
+				Layar Penuh
 			</Tooltip>
 		</Fade>
 	);
