@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react';
 export const VoiceOver = ({ page, isPause, onEnded }) => {
 	const voiceOverRef = useRef(null);
 
-	const handlePlay = () => voiceOverRef.current.play();
-	const handlePause = () => voiceOverRef.current.pause();
+	const handlePlay = () => voiceOverRef.current?.play();
+	const handlePause = () => voiceOverRef.current?.pause();
 
 	useEffect(() => {
 		if (voiceOverRef.current) {
@@ -14,11 +14,10 @@ export const VoiceOver = ({ page, isPause, onEnded }) => {
 			voiceOverRef.current.src = BOOK_DATA.pages[page].audio;
 			handlePlay();
 		}
-	}, [isPause, voiceOverRef, page]);
+	}, [voiceOverRef, page]);
 
 	useEffect(() => {
-		if (isPause) handlePause();
-		else handlePlay();
+		isPause ? handlePause() : handlePlay();
 	}, [isPause]);
 
 	return (
