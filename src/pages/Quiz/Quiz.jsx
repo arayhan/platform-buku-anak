@@ -13,11 +13,10 @@ import { useNavigate } from 'react-router-dom';
 export const Quiz = () => {
 	const navigate = useNavigate();
 
-	const { quizAnswers, setQuizAnswers } = useAppStore();
+	const { quizAnswers, setQuizAnswers, currentAnswer, setCurrentAnswer } = useAppStore();
 
 	const [transcript, setTranscript] = useState();
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const [currentAnswer, setCurrentAnswer] = useState(null);
 	const [errorMessage, setErrorMessage] = useState(null);
 
 	const currentQuiz = QUIZ_DATA[currentIndex];
@@ -26,7 +25,8 @@ export const Quiz = () => {
 		if (currentAnswer || transcript) {
 			let score = 0;
 			const answer = currentQuiz?.type === QUIZ_TYPE.OPTION ? currentAnswer : transcript || currentAnswer;
-			const answerLength = toLowerCaseAndremoveSymbol(answer).split(' ').length;
+			const transcriptLength =
+				currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND && toLowerCaseAndremoveSymbol(answer).split(' ').length;
 
 			if (currentQuiz?.type === QUIZ_TYPE.OPTION && currentAnswer?.isCorrect) score = 100;
 			else if (currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND) {
@@ -40,14 +40,17 @@ export const Quiz = () => {
 			}
 
 			const isAnswerCorrect =
-				score === 100 && answerLength === toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length;
+				(currentQuiz?.type === QUIZ_TYPE.OPTION && score === 100) ||
+				(currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND &&
+					score === 100 &&
+					transcriptLength === toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length);
 
 			Swal.fire({
 				title: isAnswerCorrect
 					? 'Yay! Jawaban Benar!'
 					: currentQuiz?.type === QUIZ_TYPE.OPTION ||
 					  score < 50 ||
-					  answerLength > toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length
+					  transcriptLength > toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length
 					? 'Jawabanmu belum tepat 😢. Bisa coba lagi?'
 					: score >= 50 && 'Jawabanmu hampir benar, sepertinya ada kata yang tertinggal 🤔. Bisa coba lagi?',
 				imageUrl: isAnswerCorrect ? require('@/images/squishiverse-squishies.gif') : require('@/images/200w.gif'),
@@ -60,19 +63,15 @@ export const Quiz = () => {
 				backdrop: 'rgba(115, 152, 181, 0.4)',
 			}).then(() => {
 				if (isAnswerCorrect) {
-					if (currentIndex + 1 >= QUIZ_DATA.length) {
-						navigate('/quiz/overview');
-					} else {
-						quizAnswers[currentIndex] = {
-							quiz: currentQuiz,
-							answer,
-							score: score.toFixed(),
-						};
+					quizAnswers[currentIndex] = {
+						quiz: currentQuiz,
+						answer,
+						score: score.toFixed(),
+					};
 
-						setQuizAnswers(quizAnswers);
-						setCurrentIndex(currentIndex + 1);
-						setErrorMessage(null);
-					}
+					setQuizAnswers(quizAnswers);
+					setCurrentIndex(currentIndex + 1);
+					setErrorMessage(null);
 				}
 			});
 		} else {
@@ -83,16 +82,21 @@ export const Quiz = () => {
 		}
 	};
 
-	const handlePrevious = () => {
-		const prevAnswer = quizAnswers[currentIndex - 1];
-		setCurrentAnswer(prevAnswer.answer);
-		if (prevAnswer.quiz.type === QUIZ_TYPE.INPUT_SOUND) setTranscript(prevAnswer.answer);
-		setCurrentIndex(currentIndex - 1);
-	};
+	const handlePrevious = () => setCurrentIndex(currentIndex - 1);
 
 	useEffect(() => {
-		if (quizAnswers.length) setCurrentIndex(quizAnswers.length);
+		if (quizAnswers.length) {
+			setCurrentIndex(quizAnswers.length);
+		}
 	}, [quizAnswers]);
+
+	useEffect(() => {
+		if (currentIndex + 1 > QUIZ_DATA.length) {
+			navigate('/quiz/overview');
+		} else {
+			setCurrentAnswer(quizAnswers[currentIndex]?.answer);
+		}
+	}, [navigate, setCurrentAnswer, quizAnswers, currentIndex]);
 
 	return (
 		<Fade>

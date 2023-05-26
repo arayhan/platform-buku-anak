@@ -1,8 +1,10 @@
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Button } from '../atoms/Button';
 import { TbMicrophone } from 'react-icons/tb';
+import { useAppStore } from '@/store/store';
 
 export const SpeechToText = ({ request, onChangeTranscript }) => {
+	const { currentAnswer } = useAppStore();
 	const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition, isMicrophoneAvailable } =
 		useSpeechRecognition();
 
@@ -58,6 +60,25 @@ export const SpeechToText = ({ request, onChangeTranscript }) => {
 								<Button onClick={resetTranscript}>Reset</Button>
 							</>
 						)}
+					</div>
+				</>
+			)}
+
+			{currentAnswer && typeof currentAnswer === 'string' && (
+				<>
+					<div>Jawaban Sebelumnya :</div>
+					<div className="w-full p-3 border-2 border-gray-200 rounded-md">
+						{currentAnswer
+							?.toLowerCase()
+							.split(' ')
+							.map((word, index) => {
+								const isCorrect = request.split(' ').includes(word);
+								return (
+									<span key={index} className={isCorrect ? 'text-green-500' : 'text-red-500'}>
+										{word}{' '}
+									</span>
+								);
+							})}
 					</div>
 				</>
 			)}

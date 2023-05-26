@@ -6,6 +6,7 @@ const states = (set, get) => ({
 	readingMode: READING_MODE.READ_ALOUD,
 	showSplashScreen: true,
 	quizAnswers: [],
+	currentAnswer: null,
 
 	setReadingMode: (mode) => {
 		set({ readingMode: mode });
@@ -18,6 +19,9 @@ const states = (set, get) => ({
 	},
 	resetQuizAnswers: () => {
 		set({ quizAnswers: [] });
+	},
+	setCurrentAnswer: (answer) => {
+		set({ currentAnswer: answer });
 	},
 });
 
