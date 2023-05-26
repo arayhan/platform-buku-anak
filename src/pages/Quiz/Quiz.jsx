@@ -53,7 +53,9 @@ export const Quiz = () => {
 					  transcriptLength > toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length
 					? 'Jawabanmu belum tepat 😢 Bisa coba lagi?'
 					: score >= 50 && 'Jawabanmu hampir benar, sepertinya ada kata yang tertinggal 🤔 Bisa coba lagi?',
-				imageUrl: isAnswerCorrect ? require('@/images/squishiverse-squishies.gif') : require('@/images/200w.gif'),
+				imageUrl: isAnswerCorrect
+					? require('@/images/tonton-tontonsticker.gif')
+					: require('@/images/tonton-tonton-sticker.gif'),
 				imageAlt: 'image result',
 				width: 600,
 				padding: '3em',
