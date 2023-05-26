@@ -1,7 +1,7 @@
 import { BOOK_DATA } from '@/data/bookData';
 import { useEffect, useRef } from 'react';
 
-export const VoiceOver = ({ page, time, isPause, onEnded }) => {
+export const VoiceOver = ({ page, time, isPause, onVoiceOverReady, onEnded }) => {
 	const voiceOverRef = useRef(null);
 
 	const handlePlay = () => voiceOverRef.current?.play();
@@ -26,7 +26,13 @@ export const VoiceOver = ({ page, time, isPause, onEnded }) => {
 
 	return (
 		<div>
-			<audio ref={voiceOverRef} src={BOOK_DATA.pages[page].audio} onEnded={onEnded} autoPlay />
+			<audio
+				ref={voiceOverRef}
+				src={BOOK_DATA.pages[page].audio}
+				onLoadedData={onVoiceOverReady}
+				onEnded={onEnded}
+				autoPlay
+			/>
 		</div>
 	);
 };
