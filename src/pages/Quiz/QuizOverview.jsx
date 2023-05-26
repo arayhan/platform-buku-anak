@@ -4,15 +4,12 @@ import { useAppStore } from '@/store/store';
 import { Fade } from '@/transitions/Fade/Fade';
 import { QUIZ_TYPE } from '@/utils/constants';
 import React, { useEffect } from 'react';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const QuizOverview = () => {
 	const navigate = useNavigate();
 
 	const { quizAnswers, resetQuizAnswers } = useAppStore();
-
-	const [isShowResult, setIsShowResult] = useState(false);
 
 	useEffect(() => {
 		if (QUIZ_DATA.length !== quizAnswers.length) {
@@ -28,13 +25,11 @@ export const QuizOverview = () => {
 				</div>
 				<hr />
 				<div className="grid gap-8">
-					{isShowResult && (
-						<div>
-							<h1 className="p-12 text-3xl font-bold text-center text-white bg-green-600 rounded-lg">{`Skor akhir : ${
-								quizAnswers.reduce((acc, curr) => acc + Number(curr.score), 0) / QUIZ_DATA.length
-							}`}</h1>
-						</div>
-					)}
+					<div>
+						<h1 className="p-12 text-3xl font-bold text-center text-white bg-green-600 rounded-lg">{`Skor akhir : ${
+							quizAnswers.reduce((acc, curr) => acc + Number(curr.score), 0) / QUIZ_DATA.length
+						}`}</h1>
+					</div>
 					{quizAnswers.map((quizAnswer, index) => (
 						<div key={index}>
 							<div className="flex items-start gap-4">
@@ -51,7 +46,7 @@ export const QuizOverview = () => {
 										{quizAnswer.quiz.type === QUIZ_TYPE.OPTION && <p className="text-lg">"{quizAnswer.answer.text}"</p>}
 										{quizAnswer.quiz.type === QUIZ_TYPE.INPUT_SOUND && <p className="text-lg">"{quizAnswer.answer}"</p>}
 									</div>
-									{isShowResult && <div className="font-bold text-app-carmine-pink">Skor : {quizAnswer?.score}</div>}
+									<div className="font-bold text-app-carmine-pink">Skor : {quizAnswer?.score}</div>
 								</div>
 							</div>
 						</div>
@@ -59,21 +54,14 @@ export const QuizOverview = () => {
 				</div>
 			</div>
 			<div className="flex items-center justify-center gap-8">
-				{isShowResult && (
-					<Button
-						label="Kembali ke Menu"
-						onClick={() => {
-							resetQuizAnswers();
-							navigate('/book/finish');
-						}}
-					/>
-				)}
-				{!isShowResult && (
-					<>
-						<Button label="Ubah Jawaban" onClick={() => navigate(-1)} />
-						<Button label="Lihat Hasil" onClick={() => setIsShowResult(true)} />
-					</>
-				)}
+				<Button label="Ulangi Kuis" onClick={() => resetQuizAnswers()} />
+				<Button
+					label="Kembali ke Menu"
+					onClick={() => {
+						resetQuizAnswers();
+						navigate('/book/finish');
+					}}
+				/>
 			</div>
 		</Fade>
 	);
