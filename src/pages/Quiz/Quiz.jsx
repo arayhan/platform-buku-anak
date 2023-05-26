@@ -15,7 +15,7 @@ export const Quiz = () => {
 
 	const { quizAnswers, setQuizAnswers, currentAnswer, setCurrentAnswer } = useAppStore();
 
-	const [transcript, setTranscript] = useState();
+	const [transcript, setTranscript] = useState(null);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [errorMessage, setErrorMessage] = useState(null);
 
@@ -51,8 +51,8 @@ export const Quiz = () => {
 					: currentQuiz?.type === QUIZ_TYPE.OPTION ||
 					  score < 50 ||
 					  transcriptLength > toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length
-					? 'Jawabanmu belum tepat 😢. Bisa coba lagi?'
-					: score >= 50 && 'Jawabanmu hampir benar, sepertinya ada kata yang tertinggal 🤔. Bisa coba lagi?',
+					? 'Jawabanmu belum tepat 😢 Bisa coba lagi?'
+					: score >= 50 && 'Jawabanmu hampir benar, sepertinya ada kata yang tertinggal 🤔 Bisa coba lagi?',
 				imageUrl: isAnswerCorrect ? require('@/images/squishiverse-squishies.gif') : require('@/images/200w.gif'),
 				imageAlt: 'image result',
 				width: 600,

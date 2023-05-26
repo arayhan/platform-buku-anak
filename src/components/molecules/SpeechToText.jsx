@@ -29,9 +29,10 @@ export const SpeechToText = ({ request, onChangeTranscript }) => {
 				onMouseDown={startListening}
 				onTouchEnd={SpeechRecognition.stopListening}
 				onMouseUp={SpeechRecognition.stopListening}
+				contextMenu={(event) => event.preventDefault()}
 			>
 				<TbMicrophone className="text-white" size={20} color="#fff" />
-				<div>Tahan untuk bicara</div>
+				<div contextMenu={(event) => event.preventDefault()}>Tahan untuk bicara</div>
 			</Button>
 
 			<div className="text-center text-yellow-500">
@@ -40,10 +41,10 @@ export const SpeechToText = ({ request, onChangeTranscript }) => {
 
 			{transcript && (
 				<>
-					<div className="flex flex-col items-center w-full space-y-3 text-center">
+					<div className="flex flex-col items-center w-full space-y-2 text-center">
 						{transcript && (
 							<>
-								<div>Transcript :</div>
+								<div>Jawabanmu :</div>
 								<div className="w-full p-3 border-2 border-gray-200 rounded-md">
 									{transcript
 										?.toLowerCase()
