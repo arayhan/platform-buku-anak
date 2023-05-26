@@ -3,6 +3,7 @@ import { ButtonIcon } from '@/components/atoms';
 import { useAppStore } from '@/store/store';
 import { Fade } from '@/transitions/Fade/Fade';
 import React, { useEffect, useRef, useState } from 'react';
+import { toggleFullScreen } from '@/utils/helpers';
 
 export const SplashScreen = () => {
 	const navigate = useNavigate();
@@ -19,6 +20,7 @@ export const SplashScreen = () => {
 
 	const handleStart = () => {
 		setIsPlay(true);
+		toggleFullScreen(true);
 		openingRef.current.play();
 	};
 
