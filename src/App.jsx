@@ -31,6 +31,7 @@ function App() {
 
 	const IS_AT_HOME = pathname === '/';
 	const IS_AT_SPLASH = pathname === '/splash';
+	const IS_AT_QUIZ = pathname === '/quiz';
 
 	return (
 		<div ref={exportRef} className="h-screen max-h-screen overflow-hidden">
@@ -55,7 +56,7 @@ function App() {
 
 			{!IS_AT_SPLASH && (
 				<div className="absolute flex items-start gap-4 top-5 left-8">
-					{!IS_AT_HOME && !showSplashScreen && !IS_AT_SPLASH && <ButtonGoHome />}
+					{!IS_AT_HOME && !IS_AT_QUIZ && !showSplashScreen && !IS_AT_SPLASH && <ButtonGoHome />}
 					{IS_AT_HOME && (
 						<Button icon={require('@/images/symbol/buku.png')} size="sm" onClick={() => navigate('/usage-instruction')}>
 							Petunjuk Penggunaan

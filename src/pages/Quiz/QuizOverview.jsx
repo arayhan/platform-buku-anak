@@ -54,7 +54,13 @@ export const QuizOverview = () => {
 				</div>
 			</div>
 			<div className="flex items-center justify-center gap-8">
-				<Button label="Ulangi Kuis" onClick={() => resetQuizAnswers()} />
+				<Button
+					label="Ulangi Kuis"
+					onClick={() => {
+						resetQuizAnswers();
+						navigate('/quiz');
+					}}
+				/>
 				<Button
 					label="Kembali ke Menu"
 					onClick={() => {
