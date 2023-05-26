@@ -5,6 +5,7 @@ import { useAppStore } from '@/store/store';
 import { Fade } from '@/transitions/Fade/Fade';
 import { playSound } from '@/utils/helpers';
 import { READING_MODE } from '@/utils/constants';
+import { MdReplay } from 'react-icons/md';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
@@ -21,7 +22,8 @@ export const Book = () => {
 	const IS_READ_ALOUD = readingMode === READING_MODE.READ_ALOUD;
 
 	const [time, setTime] = useState(0);
-	const [maxTime, setMaxTime] = useState(0);
+	const [highlightIndex, setHighlightIndex] = useState(0);
+
 	const [isPause, setIsPause] = useState(true);
 	const [page, setPage] = useState(0);
 	const [totalPage, setTotalPage] = useState(BOOK_DATA.pages.length);
@@ -53,32 +55,47 @@ export const Book = () => {
 		}
 	};
 
-	useEffect(() => {
-		const selectedPage = BOOK_DATA.pages[page];
-
+	const handleReplay = () => {
 		setTime(0);
-		setPageData(selectedPage);
+		setHighlightIndex(0);
 		setIsPause(false);
+	};
 
-		if (bookRef.current.pageFlip()) {
-			setTotalPage(bookRef.current.pageFlip().getPageCount());
+	useEffect(() => {
+		const currentPageData = BOOK_DATA.pages[page];
+		const currentPageHighlight = currentPageData.highlight;
+
+		const nextHighlight = currentPageHighlight?.[highlightIndex + 1] || null;
+
+		const interval = setInterval(() => {
+			if (!isPause) {
+				setTime((prevTime) => prevTime + 100);
+			}
+		}, 100);
+
+		setPageData(currentPageData);
+
+		if (time > nextHighlight?.time || highlightIndex + 1 > currentPageHighlight?.length) {
+			setHighlightIndex((prevIndex) => prevIndex + 1);
 		}
+
+		return () => clearInterval(interval);
+	}, [highlightIndex, time, page, isPause]);
+
+	useEffect(() => {
+		setHighlightIndex(0);
+		setTime(0);
+
+		if (page > 0) setIsPause(false);
+		if (bookRef.current.pageFlip()) setTotalPage(bookRef.current.pageFlip().getPageCount());
 	}, [page]);
 
-	// useEffect(() => {
-	// 	const interval = setInterval(() => {
-	// 		if (time <= maxTime) setTime((time) => time + 100);
-	// 		else clearInterval(interval);
-	// 	}, 100);
-
-	// 	return () => {
-	// 		clearInterval(interval);
-	// 	};
-	// }, [time, maxTime]);
+	console.log(`%chighlightIndex: ${highlightIndex}`, 'color: pink;');
+	console.log(`%cTime: ${time}`, 'color: lightblue;');
 
 	return (
 		<Fade>
-			{IS_READ_ALOUD && <VoiceOver isPause={isPause} onEnded={handleVoiceOverEnded} page={page} />}
+			{IS_READ_ALOUD && <VoiceOver time={time} isPause={isPause} onEnded={handleVoiceOverEnded} page={page} />}
 
 			<div className="flex flex-col justify-center h-[93vh] max-w-screen-lg mx-auto -mt-12">
 				<HTMLFlipBook
@@ -92,7 +109,6 @@ export const Book = () => {
 					flippingTime={500}
 					showPageCorners
 					mobileScrollSupport
-					// className="bg-red-500 w-full max-w-[80vw]"
 				>
 					{BOOK_DATA.pages?.map((page) => (
 						<div key={page.number} className="w-[80vw] h-full overflow-hidden rounded-lg shadow-xl">
@@ -102,7 +118,16 @@ export const Book = () => {
 				</HTMLFlipBook>
 
 				<div className="relative mt-4 text-xs text-center z-11 md:text-base md:-mt-5 lg:-mt-16 lg:text-lg">
-					{pageData?.text}
+					{pageData?.highlight &&
+						pageData?.highlight?.map((highlight, index) => {
+							const isHighlight = highlightIndex === index;
+							return isHighlight ? (
+								<span className="font-semibold text-green-500">{highlight.word} </span>
+							) : (
+								`${highlight.word} `
+							);
+						})}
+					{!pageData?.highlight && pageData?.text}
 				</div>
 				<div className="mt-3 text-xs italic text-center opacity-50">
 					Halaman {page + 1} dari {totalPage}
@@ -113,7 +138,7 @@ export const Book = () => {
 				<ButtonIcon
 					id="buttonPrev"
 					icon={require('@/images/symbol/previous left.png')}
-					className={clsx('w-12')}
+					className={clsx('w-10 md:w-11 lg:w-12')}
 					onClick={handleGoToPrevPage}
 					disabled={page === 0}
 				/>
@@ -121,22 +146,38 @@ export const Book = () => {
 					Sebelumnya
 				</Tooltip>
 				{IS_READ_ALOUD && (
-					<>
+					<div className="flex gap-4">
 						<ButtonIcon
 							id="buttonPlayPause"
 							icon={require(`@/images/symbol/${isPause ? 'play' : 'pause'}.png`)}
-							className={clsx('w-12')}
+							className={clsx('w-10 md:w-11 lg:w-12')}
 							onClick={() => setIsPause((isPause) => !isPause)}
 						/>
 						<Tooltip anchorSelect="#buttonPlayPause" place="top">
 							{isPause ? 'Putar' : 'Jeda'}
 						</Tooltip>
-					</>
+
+						<ButtonIcon
+							id="buttonReplay"
+							className={clsx(
+								'flex items-center justify-center',
+								'w-10 md:w-11 lg:w-12 h-10 md:h-11 lg:h-12 text-sm text-[1.8em]',
+								'text-white rounded-lg cursor-pointer bg-app-carmine-pink'
+							)}
+							disabled={isPause || time === 0}
+							onClick={handleReplay}
+						>
+							<MdReplay />
+						</ButtonIcon>
+						<Tooltip anchorSelect="#buttonReplay" place="top">
+							Ulangi
+						</Tooltip>
+					</div>
 				)}
 				<ButtonIcon
 					id="buttonNext"
 					icon={require('@/images/symbol/previous right.png')}
-					className={clsx('w-12')}
+					className={clsx('w-10 md:w-11 lg:w-12')}
 					onClick={handleGoToNextPage}
 					disabled={IS_READ_ALOUD && page === totalPage - 1}
 				/>

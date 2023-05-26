@@ -1,7 +1,7 @@
 import { BOOK_DATA } from '@/data/bookData';
 import { useEffect, useRef } from 'react';
 
-export const VoiceOver = ({ page, isPause, onEnded }) => {
+export const VoiceOver = ({ page, time, isPause, onEnded }) => {
 	const voiceOverRef = useRef(null);
 
 	const handlePlay = () => voiceOverRef.current?.play();
@@ -19,6 +19,10 @@ export const VoiceOver = ({ page, isPause, onEnded }) => {
 	useEffect(() => {
 		isPause ? handlePause() : handlePlay();
 	}, [isPause]);
+
+	useEffect(() => {
+		if (time === 0) voiceOverRef.current.currentTime = 0;
+	}, [time]);
 
 	return (
 		<div>
