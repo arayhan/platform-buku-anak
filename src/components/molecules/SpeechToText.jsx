@@ -2,7 +2,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { Button } from '../atoms/Button';
 import { TbMicrophone } from 'react-icons/tb';
 
-export const SpeechToText = ({ request, answer }) => {
+export const SpeechToText = ({ request, onChangeTranscript }) => {
 	const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition, isMicrophoneAvailable } =
 		useSpeechRecognition();
 
@@ -16,6 +16,8 @@ export const SpeechToText = ({ request, answer }) => {
 	if (!isMicrophoneAvailable) {
 		return <span>Microphone is not available.</span>;
 	}
+
+	onChangeTranscript(transcript);
 
 	return (
 		<div className="flex flex-col items-center justify-center w-full space-y-3">
@@ -34,7 +36,7 @@ export const SpeechToText = ({ request, answer }) => {
 				{listening ? 'Mic menyala, bicara sekarang' : 'Mic mati, tekan tombol di atas untuk bicara'}
 			</div>
 
-			{(transcript || answer) && (
+			{transcript && (
 				<>
 					<div className="flex flex-col items-center w-full space-y-3 text-center">
 						{transcript && (
@@ -57,25 +59,6 @@ export const SpeechToText = ({ request, answer }) => {
 							</>
 						)}
 					</div>
-
-					{answer && (
-						<>
-							<div>Jawaban Sebelumnya :</div>
-							<div className="w-full p-3 border-2 border-gray-200 rounded-md">
-								{answer
-									?.toLowerCase()
-									.split(' ')
-									.map((word, index) => {
-										const isCorrect = request.split(' ').includes(word);
-										return (
-											<span key={index} className={isCorrect ? 'text-green-500' : 'text-red-500'}>
-												{word}{' '}
-											</span>
-										);
-									})}
-							</div>
-						</>
-					)}
 				</>
 			)}
 		</div>
