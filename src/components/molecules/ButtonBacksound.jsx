@@ -59,7 +59,7 @@ export const ButtonBacksound = () => {
 				</div>
 			</div>
 			<Tooltip anchorSelect="#buttonBacksound" place="top">
-				Music
+				Musik
 			</Tooltip>
 		</>
 	);
