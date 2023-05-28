@@ -16,7 +16,7 @@ export const Author = () => {
 				<div className="grid gap-12">
 					<div className="flex flex-col gap-6 text-sm leading-relaxed text-center lg:text-base lg:text-left lg:col-span-2 lg:flex-row">
 						<div className="flex flex-col items-center space-y-3 lg:items-start">
-							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover w-40 rounded-xl lg:w-60" />
+							<img src={require('@/images/author/maika.jpg')} alt="" className="object-cover w-40 rounded-xl lg:w-60" />
 							<div>
 								<div className="font-semibold">Maika Lestari</div>
 								<div>Penulis</div>
@@ -34,7 +34,11 @@ export const Author = () => {
 
 					<div className="flex flex-col gap-6 text-sm leading-relaxed text-center lg:text-base lg:text-left lg:col-span-2 lg:flex-row">
 						<div className="flex flex-col items-center space-y-3 lg:items-start">
-							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover w-40 rounded-xl lg:w-60" />
+							<img
+								src={require('@/images/author/satujuacreative.jpg')}
+								alt=""
+								className="object-cover w-40 rounded-xl lg:w-60"
+							/>
 							<div>
 								<div className="font-semibold">Satujua Creative</div>
 								<div>Ilustrator</div>
@@ -46,7 +50,7 @@ export const Author = () => {
 								dan konsultan brand. Beberapa karya dan project satujuacreative dapat dilihat melalui instagram{' '}
 								<a
 									className="font-semibold text-app-bright-navy-blue"
-									href="https://www.instagram.com/‌satujuacreative/"
+									href="https://instagram.com/satujuacreative?igshid=NTc4MTIwNjQ2YQ=="
 									rel="noreferrer"
 									target="_blank"
 								>
@@ -58,7 +62,11 @@ export const Author = () => {
 
 					<div className="flex flex-col gap-6 text-sm leading-relaxed text-center lg:text-base lg:text-left lg:col-span-2 lg:flex-row">
 						<div className="flex flex-col items-center space-y-3 lg:items-start">
-							<img src={require('@/images/dummy.jpeg')} alt="" className="object-cover w-40 rounded-xl lg:w-60" />
+							<img
+								src={require('@/images/author/rayhan.jpg')}
+								alt=""
+								className="object-cover w-40 rounded-xl lg:w-60"
+							/>
 							<div>
 								<div className="font-semibold">Ahmed Rayhan Primadedas</div>
 								<div>Programmer</div>
