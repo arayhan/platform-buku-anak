@@ -100,6 +100,8 @@ export const Book = () => {
 		return () => document.removeEventListener('scroll', handleScroll);
 	}, []);
 
+	console.log({ time });
+
 	return (
 		<Fade>
 			{IS_READ_ALOUD && (

@@ -1,3 +1,5 @@
+// Highlight Time in milliseconds
+
 export const BOOK_DATA = {
 	title: 'Pensil Baru Habil',
 	pages: [
@@ -7,7 +9,6 @@ export const BOOK_DATA = {
 			audio: require('@/audios/voice-over/Hal 1 (enhanced).wav'),
 			text: 'Hari ini menjadi hari yang istimewa bagi Habil. Ibu memberikannya pensil baru berwarna biru. Di bagian ujung pensilnya ada bentuk ikan hiu. Habil merasa sangat senang menerima pensil pemberian Ibu.',
 			highlight: [
-				// Time in milliseconds
 				{ word: 'Hari ini', time: 0 },
 				{ word: 'menjadi', time: 2500 },
 				{ word: 'hari', time: 2800 },
@@ -33,7 +34,6 @@ export const BOOK_DATA = {
 			audio: require('@/audios/voice-over/Hal 2 (enhanced).wav'),
 			text: 'Selama kegiatan belajar di sekolah, Habil menggunakan pensil barunya.',
 			highlight: [
-				// Time in milliseconds
 				{ word: 'Selama', time: 0 },
 				{ word: 'kegiatan', time: 1000 },
 				{ word: 'belajar', time: 1500 },
@@ -49,12 +49,60 @@ export const BOOK_DATA = {
 			image: require('@/images/story-plain/3-min.jpg'),
 			audio: require('@/audios/voice-over/Hal 3 (enhanced) - Sound Effect.mp3'),
 			text: 'Kriiingg! Bel istirahat berbunyi. Teman-teman mengajak Habil pergi ke kantin. Habil bersemangat, ia langsung beranjak dari tempat duduknya. Tanpa sengaja, ia mendorong mejanya.',
+			highlight: [
+				{ word: 'Kriiingg!', time: 0 },
+				{ word: 'Bel', time: 6000 },
+				{ word: 'istirahat', time: 6500 },
+				{ word: 'berbunyi.', time: 7200 },
+				{ word: 'Teman-teman,', time: 9400 },
+				{ word: 'mengajak Habil', time: 10000 },
+				{ word: 'pergi ke kantin.', time: 11000 },
+				{ word: 'Habil bersemangat,', time: 13000 },
+				{ word: 'ia.', time: 15000 },
+				{ word: 'langsung', time: 15700 },
+				{ word: 'beranjak', time: 16000 },
+				{ word: 'dari', time: 16600 },
+				{ word: 'tempat', time: 16900 },
+				{ word: 'duduknya.', time: 17100 },
+				{ word: 'Tanpa sengaja,', time: 18500 },
+				{ word: 'ia', time: 20200 },
+				{ word: 'mendorong mejanya.', time: 21000 },
+			],
 		},
 		{
 			number: 4,
 			image: require('@/images/story-plain/4-min.jpg'),
 			audio: require('@/audios/voice-over/Hal 4 (enhanced).wav'),
 			text: 'Ketika kembali dari kantin. Tiba-tiba Habil teringat dengan pensil barunya. Ia bergegas menuju ke mejanya. “Mengapa pensilnya tidak ada?” kata Habil dengan panik. Habil mencoba mengingat dan berpikir, dimana ya letak pensilnya.',
+			highlight: [
+				{ word: 'Ketika', time: 0 },
+				{ word: 'kembali', time: 1900 },
+				{ word: 'dari kantin.', time: 2200 },
+				{ word: 'Tiba-tiba', time: 3800 },
+				{ word: 'Habil', time: 5500 },
+				{ word: 'teringat', time: 6000 },
+				{ word: 'dengan', time: 6700 },
+				{ word: 'pensil barunya.', time: 7100 },
+				{ word: 'Ia', time: 8500 },
+				{ word: 'bergegas', time: 8900 },
+				{ word: 'menuju', time: 9500 },
+				{ word: 'ke mejanya.', time: 9900 },
+				{ word: '“Mengapa', time: 12000 },
+				{ word: 'pensilnya', time: 13000 },
+				{ word: 'tidak ada?”', time: 13300 },
+				{ word: 'kata Habil', time: 15000 },
+				{ word: 'dengan', time: 16100 },
+				{ word: 'panik.', time: 16900 },
+				{ word: 'Habil', time: 19000 },
+				{ word: 'mencoba', time: 19300 },
+				{ word: 'mengingat', time: 19500 },
+				{ word: 'dan', time: 20000 },
+				{ word: 'berpikir,', time: 20500 },
+				{ word: 'dimana', time: 21800 },
+				{ word: 'ya', time: 22000 },
+				{ word: 'letak', time: 22800 },
+				{ word: 'pensilnya.', time: 23000 },
+			],
 		},
 		{
 			number: 5,
