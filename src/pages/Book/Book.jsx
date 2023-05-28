@@ -100,7 +100,7 @@ export const Book = () => {
 		return () => document.removeEventListener('scroll', handleScroll);
 	}, []);
 
-	console.log({ time });
+	console.log('@TIME => ', time);
 
 	return (
 		<Fade>
@@ -139,7 +139,13 @@ export const Book = () => {
 						pageData?.highlight &&
 						pageData?.highlight?.map((highlight, index) => {
 							const isHighlight = highlightIndex === index;
-							return isHighlight ? <span className="text-green-500">{highlight.word} </span> : `${highlight.word} `;
+							return isHighlight ? (
+								<span key={highlight.time} className="text-green-500">
+									{highlight.word}{' '}
+								</span>
+							) : (
+								`${highlight.word} `
+							);
 						})}
 					{(!pageData?.highlight || !IS_READ_ALOUD) && pageData?.text}
 				</div>
