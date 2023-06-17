@@ -22,7 +22,7 @@ export const Quiz = () => {
 	const currentQuiz = QUIZ_DATA[currentIndex];
 
 	const handleSetAnswer = () => {
-		if (currentAnswer || transcript) {
+		if (currentAnswer || (currentQuiz.type === QUIZ_TYPE.INPUT_SOUND && transcript)) {
 			let score = 0;
 			const answer = currentQuiz?.type === QUIZ_TYPE.OPTION ? currentAnswer : transcript || currentAnswer;
 			const transcriptLength =
@@ -39,32 +39,42 @@ export const Quiz = () => {
 				score = Math.ceil((correctWords / toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length) * 100);
 			}
 
-			const isAnswerCorrect =
-				(currentQuiz?.type === QUIZ_TYPE.OPTION && score === 100) ||
-				(currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND &&
-					score === 100 &&
-					transcriptLength === toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length);
+			const isOptionAnswerCorrect = currentQuiz?.type === QUIZ_TYPE.OPTION && score === 100;
+			const isInputSoundAnswerCorrect =
+				currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND &&
+				score === 100 &&
+				transcriptLength === toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length;
 
 			Swal.fire({
-				title: isAnswerCorrect
+				title: isOptionAnswerCorrect
 					? 'Yay! Jawaban Benar!'
-					: currentQuiz?.type === QUIZ_TYPE.OPTION ||
-					  score < 50 ||
-					  transcriptLength > toLowerCaseAndremoveSymbol(currentQuiz?.text).split(' ').length
-					? 'Jawabanmu belum tepat 😢 Bisa coba lagi?'
-					: score >= 50 && 'Jawabanmu hampir benar, sepertinya ada kata yang tertinggal 🤔 Bisa coba lagi?',
-				imageUrl: isAnswerCorrect
-					? require('@/images/tonton-tontonsticker.gif')
-					: require('@/images/tonton-tonton-sticker.gif'),
+					: isInputSoundAnswerCorrect
+					? 'Bagus! Kamu dapat membaca seluruh kalimat dengan baik.'
+					: currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND && transcriptLength < 3
+					? 'Sepertinya suara kamu belum terekam. Ayo coba lagi!'
+					: currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND && transcriptLength >= 3
+					? 'Bagus! Kamu dapat membaca beberapa kata dengan baik!'
+					: 'Jawabanmu belum tepat.',
+				imageUrl:
+					isOptionAnswerCorrect || isInputSoundAnswerCorrect
+						? require('@/images/tonton-tontonsticker.gif')
+						: currentQuiz?.type === QUIZ_TYPE.OPTION || transcriptLength < 3
+						? require('@/images/tonton-tonton-sticker.gif')
+						: require('@/images/okay-ok.gif'),
 				imageAlt: 'image result',
 				width: 600,
 				padding: '3em',
 				color: '#7398b5',
 				background: '#fff',
-				confirmButtonText: isAnswerCorrect ? 'Lanjut' : 'Coba Lagi',
+				confirmButtonText: 'Lanjut',
+				showConfirmButton:
+					currentQuiz?.type === QUIZ_TYPE.OPTION ||
+					(currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND && transcriptLength >= 3),
+				cancelButtonText: 'Coba Lagi',
+				showCancelButton: currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND && transcriptLength < 3,
 				backdrop: 'rgba(115, 152, 181, 0.4)',
-			}).then(() => {
-				if (isAnswerCorrect) {
+			}).then(({ isConfirmed }) => {
+				if (isConfirmed) {
 					quizAnswers[currentIndex] = {
 						quiz: currentQuiz,
 						answer,
@@ -79,7 +89,7 @@ export const Quiz = () => {
 		} else {
 			if (currentQuiz?.type === QUIZ_TYPE.OPTION) setErrorMessage('Pilih salah satu jawaban terlebih dahulu, ya! 😄');
 			else if (currentQuiz?.type === QUIZ_TYPE.INPUT_SOUND) {
-				setErrorMessage('Harap memasukkan rekaman suara terlebih dahulu!');
+				setErrorMessage('Harap memasukkan rekaman suara terlebih dahulu, ya..');
 			}
 		}
 	};
@@ -160,9 +170,7 @@ export const Quiz = () => {
 							})}
 						</div>
 					)}
-					{errorMessage && !transcript && !currentAnswer && (
-						<div className="text-center text-red-500">{errorMessage}</div>
-					)}
+					{errorMessage && !currentAnswer && <div className="text-center text-red-500">{errorMessage}</div>}
 				</div>
 				<hr />
 				<div className="flex items-center justify-center gap-6">

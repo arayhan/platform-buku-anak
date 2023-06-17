@@ -24,7 +24,7 @@ export const SpeechToText = ({ request, onChangeTranscript }) => {
 	return (
 		<div className="flex flex-col items-center justify-center w-full space-y-3">
 			<Button
-				className="bg-app-blue-sapphire-500"
+				className="bg-app-blue-sapphire-500 py-4"
 				onTouchStart={startListening}
 				onMouseDown={startListening}
 				onTouchEnd={SpeechRecognition.stopListening}
@@ -32,7 +32,6 @@ export const SpeechToText = ({ request, onChangeTranscript }) => {
 				contextMenu={(event) => event.preventDefault()}
 			>
 				<TbMicrophone className="text-white" size={20} color="#fff" />
-				<div contextMenu={(event) => event.preventDefault()}>Tahan untuk bicara</div>
 			</Button>
 
 			<div className="text-center text-yellow-500">
