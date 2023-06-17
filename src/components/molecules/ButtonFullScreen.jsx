@@ -13,12 +13,12 @@ export const ButtonFullScreen = () => {
 				id="buttonFullScreen"
 				className={clsx(
 					'flex items-center justify-center',
-					'w-10 md:w-11 lg:w-12 h-10 md:h-11 lg:h-12 text-sm text-[1.8em]',
+					'w-8 md:w-9 lg:w-10 h-8 md:h-9 lg:h-10 text-sm text-[1.8em]',
 					'text-white rounded-lg cursor-pointer bg-app-carmine-pink'
 				)}
 				onClick={() => toggleFullScreen(false)}
 			>
-				<TbCapture />
+				<TbCapture size={24} />
 			</ButtonIcon>
 			<Tooltip anchorSelect="#buttonFullScreen" place="top">
 				Layar Penuh

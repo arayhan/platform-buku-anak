@@ -52,7 +52,7 @@ export const ButtonBacksound = () => {
 				<div className="text-sm text-center">
 					<ButtonIcon
 						icon={require('@/images/symbol/music.png')}
-						className={clsx('w-10 md:w-11 lg:w-12', !IS_MUSIC_ON && 'opacity-50')}
+						className={clsx('w-8 md:w-9 lg:w-10', !IS_MUSIC_ON && 'opacity-50')}
 						onClick={toggleBacksound}
 					/>
 					<div>{IS_MUSIC_ON ? 'ON' : 'OFF'}</div>

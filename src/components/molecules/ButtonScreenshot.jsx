@@ -29,7 +29,7 @@ export const ButtonScreenshot = ({ exportRef }) => {
 		<ButtonIcon
 			className={clsx(
 				'flex items-center justify-center',
-				'w-10 md:w-11 lg:w-12 h-10 md:h-11 lg:h-12 text-sm text-[1.8em]',
+				'w-9 md:w-10 lg:w-11 h-9 md:h-10 lg:h-11 text-sm text-[1.8em]',
 				'text-white rounded-lg cursor-pointer bg-app-carmine-pink'
 			)}
 			onClick={() => exportAsImage(exportRef.current, 'pensil-baru-habil')}

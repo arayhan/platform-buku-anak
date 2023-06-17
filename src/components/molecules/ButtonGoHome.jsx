@@ -13,7 +13,7 @@ export const ButtonGoHome = () => {
 			<div id="buttonGoHome" className="text-sm text-center">
 				<ButtonIcon
 					icon={require('@/images/symbol/home.png')}
-					className={clsx('w-10 md:w-11 lg:w-12')}
+					className={clsx('w-8 md:w-9 lg:w-10')}
 					onClick={() => navigate('/')}
 				/>
 			</div>
