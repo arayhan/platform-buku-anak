@@ -116,8 +116,8 @@ export const Book = () => {
 				<HTMLFlipBook
 					ref={bookRef}
 					autoSize
-					width={605.5}
-					height={302.25}
+					width={905.5}
+					height={462.25}
 					maxWidth={656.5}
 					maxHeight={328.25}
 					onFlip={handleChangePage}
@@ -126,13 +126,13 @@ export const Book = () => {
 					mobileScrollSupport
 				>
 					{BOOK_DATA.pages?.map((page) => (
-						<div key={page.number} className="w-[80vw] h-full overflow-hidden rounded-lg shadow-xl">
+						<div key={page.number} className="w-[80vw] h-50 md:h-full overflow-hidden rounded-lg shadow-xl">
 							<img className="object-contain w-[92vw] rounded-lg h-full" src={page.image} alt="" />
 						</div>
 					))}
 				</HTMLFlipBook>
 
-				<div className="relative mt-4 text-sm text-center z-11 md:text-base md:-mt-5 lg:-mt-16 lg:text-lg">
+				<div className="relative mt-4 text-base text-center z-11 md:text-xl md:mt-3 lg:mt-0 lg:text-2xl">
 					{IS_READ_ALOUD &&
 						pageData?.highlight &&
 						pageData?.highlight?.map((highlight, index) => {
