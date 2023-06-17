@@ -138,14 +138,16 @@ export const Book = () => {
 						pageData?.highlight?.map((highlight, index) => {
 							const isHighlight = highlightIndex === index;
 							return isHighlight ? (
-								<span key={highlight.time} className="text-green-500">
-									{highlight.word}{' '}
-								</span>
+								<span
+									key={highlight.time}
+									className="text-green-500"
+									dangerouslySetInnerHTML={{ __html: `${highlight.word} ` }}
+								/>
 							) : (
-								`${highlight.word} `
+								<span dangerouslySetInnerHTML={{ __html: `${highlight.word} ` }} />
 							);
 						})}
-					{(!pageData?.highlight || !IS_READ_ALOUD) && pageData?.text}
+					{(!pageData?.highlight || !IS_READ_ALOUD) && <div dangerouslySetInnerHTML={{ __html: pageData?.text }} />}
 				</div>
 			</div>
 
