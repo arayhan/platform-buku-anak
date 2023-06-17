@@ -152,9 +152,6 @@ export const Book = () => {
 			</div>
 
 			<div>
-				<div className="text-xs italic text-center opacity-50">
-					Halaman {page + 1} dari {totalPage}
-				</div>
 				<div className="flex items-center justify-between gap-16 p-4 transform">
 					<ButtonIcon
 						id="buttonPrev"
