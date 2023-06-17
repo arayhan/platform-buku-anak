@@ -116,8 +116,8 @@ export const Book = () => {
 				<HTMLFlipBook
 					ref={bookRef}
 					autoSize
-					width={905.5}
-					height={462.25}
+					width={1005.5}
+					height={502.25}
 					maxWidth={656.5}
 					maxHeight={328.25}
 					onFlip={handleChangePage}
@@ -132,7 +132,7 @@ export const Book = () => {
 					))}
 				</HTMLFlipBook>
 
-				<div className="relative mt-4 text-base text-center z-11 md:text-xl md:mt-3 lg:mt-0 lg:text-2xl">
+				<div className="relative mt-6 text-base text-center z-11 md:text-xl md:mt-5 lg:mt-4 lg:text-2xl">
 					{IS_READ_ALOUD &&
 						pageData?.highlight &&
 						pageData?.highlight?.map((highlight, index) => {
