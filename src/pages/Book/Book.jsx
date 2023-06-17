@@ -112,7 +112,7 @@ export const Book = () => {
 				/>
 			)}
 
-			<div className="flex flex-col justify-center h-[93vh] max-w-screen-lg mx-auto -mt-12">
+			<div className="flex flex-col justify-center h-[90vh] max-w-screen-lg mx-auto">
 				<HTMLFlipBook
 					ref={bookRef}
 					autoSize
