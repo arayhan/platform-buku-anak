@@ -305,7 +305,7 @@ export const BOOK_DATA = {
 			number: 12,
 			image: require('@/images/story-plain/12-min.jpg'),
 			audio: require('@/audios/voice-over/Hal 12 (enhanced).wav'),
-			text: 'Sepertinya Bima menemukan sesuatu di balik pintu.<br/> Bima mencoba mengambilnya.<br/> Ternyata itu pensil biru yang ujungnya berbentuk ikan hiu.<br/> “Ini pensil kamu bukan, Habil?” kata Bima.<br/> “Iya! Terima kasih, Bima.<br/> Maaf aku menuduhmu mengambil pensil.” ucap Habil',
+			text: 'Sepertinya Bima menemukan sesuatu di balik pintu.<br/> Bima mencoba mengambilnya.<br/> Ternyata itu pensil biru yang ujungnya berbentuk ikan hiu.<br/> “Ini pensil kamu bukan, Habil?” kata Bima.<br/> “Iya! Terima kasih, Bima. Maaf aku menuduhmu mengambil pensil.” ucap Habil',
 			highlight: [
 				{ word: 'Sepertinya', time: 0 },
 				{ word: 'Bima', time: 2500 },
@@ -330,7 +330,7 @@ export const BOOK_DATA = {
 				{ word: 'kata Bima.<br/>', time: 19000 },
 				{ word: '“Iya!', time: 21000 },
 				{ word: 'Terima kasih,', time: 22300 },
-				{ word: 'Bima.<br/>', time: 23200 },
+				{ word: 'Bima.', time: 23200 },
 				{ word: 'Maaf', time: 24200 },
 				{ word: 'aku', time: 25100 },
 				{ word: 'menuduhmu', time: 25400 },
