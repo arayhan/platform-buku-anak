@@ -33,7 +33,7 @@ export const ButtonBacksound = () => {
 	};
 
 	useEffect(() => {
-		if (IS_READING) backsoundRef.current.volume = 0.15;
+		if (IS_READING) backsoundRef.current.volume = 0.08;
 		else backsoundRef.current.volume = 0.25;
 	}, [backsoundRef, location, IS_READING]);
 
