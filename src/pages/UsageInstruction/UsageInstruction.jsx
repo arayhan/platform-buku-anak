@@ -34,6 +34,18 @@ export const UsageInstruction = () => {
 				)}
 			>
 				<div>
+					<h1 className="text-xl font-bold text-center">TUJUAN MEDIA</h1>
+				</div>
+				<div className="space-y-6">
+					<div className="space-y-3 leading-relaxed text-justify">
+						<p>
+							Buku cerita “Pensil Baru Habil” merupakan buku cerita yang diperuntukkan sebagai bahan bacaan pendukung
+							dalam pembelajaran membaca. Tujuan penggunaan bahan bacaan pendukung ini untuk membantu siswa dan siswi
+							dalam melatih kemampuan membaca nyaring.
+						</p>
+					</div>
+				</div>
+				<div>
 					<h1 className="text-xl font-bold text-center">PETUNJUK PENGGUNAAN BUKU DIGITAL</h1>
 				</div>
 				<div className="space-y-6">
