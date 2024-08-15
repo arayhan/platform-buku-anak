@@ -57,36 +57,20 @@ integrated with some features below
 
 1.  **Clone the repository:**
     
-    bash
-    
-    Copy code
-    
     `git clone https://github.com/your-username/platform-buku-anak.git
     cd platform-buku-anak` 
     
 2.  **Install dependencies:**
     
-    bash
-    
-    Copy code
-    
     `npm install` 
     
 3.  **Run the development server:**
-    
-    bash
-    
-    Copy code
     
     `npm start` 
     
     The application will run on `http://localhost:3000/`.
     
 4.  **Build the project for production:**
-    
-    bash
-    
-    Copy code
     
     `npm run build` 
     
@@ -126,4 +110,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Contact
 
-For any inquiries, please contact your-email@example.com.
+For any inquiries, please contact rayhanprima99@gmail.com
